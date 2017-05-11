@@ -1,6 +1,9 @@
+import controller.GestorApp;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        GestorApp gestorApp = new GestorApp();
+        gestorApp.run();
     }
 }

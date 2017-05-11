@@ -48,10 +48,9 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente (" +
-                "direccionFacturacion = " + direccionFacturacion +
-                ", telfContacto = " + telfContacto +
-                ", date = " + date +
+        return "Dirección de Facturación = " + direccionFacturacion +
+                ", Teléfono de Contacto = " + telfContacto +
+                ", Fecha de Registro = " + date +
                 " )";
     }
 }

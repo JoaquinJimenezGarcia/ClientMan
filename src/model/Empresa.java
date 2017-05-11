@@ -88,11 +88,11 @@ public class Empresa extends Cliente{
     @Override
     public String toString() {
         return "Empresa (" +
-                "nombre = " + nombre +
-                ", nif = " + nif +
-                ", direccion = " + direccion +
-                ", encargado = " + encargado +
-                ", telfEncargado = " + telfEncargado +
-                '}' + super.toString();
+                "Nombre = " + nombre +
+                ", NIF = " + nif +
+                ", Dirección = " + direccion +
+                ", Encargado = " + encargado +
+                ", Teléfono del Encargado = " + telfEncargado +
+                " - " + super.toString();
     }
 }

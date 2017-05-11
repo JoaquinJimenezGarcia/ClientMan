@@ -88,11 +88,11 @@ public class Persona extends Cliente{
     @Override
     public String toString() {
         return  "Persona( " +
-                "nombre = " + nombre +
-                ", apellidos = " + apellidos +
-                ", email = " + email +
-                ", telf = " + telf +
-                ", dni = " + dni +
-                " )" + super.toString();
+                "Nombre = " + nombre +
+                ", Apellidos = " + apellidos +
+                ", E-mail = " + email +
+                ", Teléfono = " + telf +
+                ", DNI = " + dni +
+                " - " + super.toString();
     }
 }

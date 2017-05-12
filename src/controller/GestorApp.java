@@ -73,12 +73,12 @@ public class GestorApp {
 
         do {
             System.out.println("Nombre Cliente: ");
-            nombre = input.next();
+            nombre = input.nextLine();
         }while (nombre.equals(""));
 
         do {
             System.out.println("Apellidos Cliente: ");
-            apellidos = input.next();
+            apellidos = input.nextLine();
         }while (apellidos.equals(""));
 
         do {
@@ -98,7 +98,7 @@ public class GestorApp {
 
         do {
             System.out.println("Dirección de Facturación: ");
-            direccionFacturacion = input.next();
+            direccionFacturacion = input.nextLine();
         }while (direccionFacturacion.equals(""));
 
         do {
@@ -127,7 +127,7 @@ public class GestorApp {
 
         do {
             System.out.println("Nombre Empresa: ");
-            nombre = input.next();
+            nombre = input.nextLine();
         }while (nombre.equals(""));
 
         do {
@@ -137,12 +137,12 @@ public class GestorApp {
 
         do {
             System.out.println("Direccion Empresa: ");
-            direccion = input.next();
+            direccion = input.nextLine();
         }while (direccion.equals(""));
 
         do {
             System.out.println("Nombre Encargado Empresa: ");
-            encargado = input.next();
+            encargado = input.nextLine();
         }while (encargado.equals(""));
 
         do {
@@ -152,7 +152,7 @@ public class GestorApp {
 
         do {
             System.out.println("Dirección de Facturación: ");
-            direccionFacturacion = input.next();
+            direccionFacturacion = input.nextLine();
         }while (direccionFacturacion.equals(""));
 
         do {

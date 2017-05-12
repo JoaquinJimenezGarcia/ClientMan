@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public abstract class Cliente {
+    private int id;
     private String direccionFacturacion;
     private int telfContacto;
     Date date;
@@ -14,9 +15,11 @@ public abstract class Cliente {
         this.direccionFacturacion = "NS/NC";
         this.telfContacto = 0;
         this.date = new Date();
+        this.id++;
     }
 
     public Cliente(String direccionFacturacion, int telfContacto, Date date) {
+        this.id++;
         this.setDireccionFacturacion(direccionFacturacion);
         this.setTelfContacto(telfContacto);
         this.date = new Date();
@@ -45,6 +48,8 @@ public abstract class Cliente {
     public Date getDate() {
         return date;
     }
+
+    public int getId(){ return id; }
 
     @Override
     public String toString() {

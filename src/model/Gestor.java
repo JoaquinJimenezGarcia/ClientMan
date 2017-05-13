@@ -33,6 +33,13 @@ public class Gestor {
     }
 
     public void borrarCliente(int id){
-        clientes.remove(id);
+        Iterator<Cliente> itCliente = clientes.iterator();
+        while (itCliente.hasNext()){
+            Cliente cliente = itCliente.next();
+
+            if (cliente.getId() == id){
+                itCliente.remove();
+            }
+        }
     }
 }

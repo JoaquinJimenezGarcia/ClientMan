@@ -34,6 +34,10 @@ public class GestorApp {
                         gestor.mostrarClientes();
                     }
                     break;
+                case 4:
+                    if (gestor.longitud()>0){
+                        gestor.borrarCliente(leerId());
+                    }
                 default:
                     break;
             }
@@ -49,6 +53,7 @@ public class GestorApp {
         System.out.println("* 2. Registrar cliente (empresa) *");
         if (gestor.longitud()>0) {
             System.out.println("* 3. Clientes registrados        *");
+            System.out.println("* 4. Borrar Clientes             *");
         }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");
@@ -57,6 +62,18 @@ public class GestorApp {
         option = input.nextInt();
 
         return option;
+    }
+
+    public int leerId(){
+        Scanner input = new Scanner (System.in);
+        int id;
+
+        gestor.mostrarClientes();
+
+        System.out.println("Introduzca el id a borrar: ");
+        id = input.nextInt();
+
+        return id;
     }
 
     public Cliente leerPersona(){

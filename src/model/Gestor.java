@@ -25,8 +25,14 @@ public class Gestor {
     }
 
     public void mostrarClientes(){
+        Collections.sort(clientes, Cliente.comparadorPorID);
+
         for (Cliente cliente: clientes){
             System.out.println(cliente);
         }
+    }
+
+    public void borrarCliente(int id){
+        clientes.remove(id);
     }
 }

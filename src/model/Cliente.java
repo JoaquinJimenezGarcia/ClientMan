@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -58,4 +59,11 @@ public abstract class Cliente {
                 ", Fecha de Registro = " + date +
                 " )";
     }
+
+    public static Comparator<Cliente> comparadorPorID = new Comparator<Cliente>() {
+        @Override
+        public int compare(Cliente c1, Cliente c2) {
+            return c1.getId() - c2.getId();
+        }
+    };
 }

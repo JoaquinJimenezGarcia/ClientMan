@@ -38,6 +38,10 @@ public class GestorApp {
                     if (gestor.longitud()>0){
                         gestor.borrarCliente(leerId());
                     }
+                case 5:
+                    if (gestor.longitud()>0){
+                        
+                    }
                 default:
                     break;
             }
@@ -54,6 +58,7 @@ public class GestorApp {
         if (gestor.longitud()>0) {
             System.out.println("* 3. Clientes registrados        *");
             System.out.println("* 4. Borrar Clientes             *");
+            System.out.println("* 5. Vender Thermomix            *");
         }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");

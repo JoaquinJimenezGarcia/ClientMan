@@ -1,11 +1,12 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
-public class Persona extends Cliente{
+public class Persona extends Cliente implements Comprobador{
     private String nombre;
     private String apellidos;
     private String email;
@@ -95,5 +96,16 @@ public class Persona extends Cliente{
                 ", Teléfono = " + telf +
                 ", DNI = " + dni +
                 " - " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){ return true; }
+        if (obj == null){ return false;}
+        if (this.getClass() != obj.getClass()){ return false; }
+
+        Persona p = (Persona)obj;
+
+        return Objects.equals(this.getDni(), p.getDni());
     }
 }

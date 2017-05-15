@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
@@ -95,5 +96,16 @@ public class Empresa extends Cliente{
                 ", Encargado = " + encargado +
                 ", Teléfono del Encargado = " + telfEncargado +
                 " - " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){ return true; }
+        if (obj == null){ return false;}
+        if (this.getClass() != obj.getClass()){ return false; }
+
+        Empresa emp = (Empresa)obj;
+
+        return Objects.equals(this.getNif(), emp.getNif());
     }
 }

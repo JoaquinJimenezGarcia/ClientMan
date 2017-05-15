@@ -1,17 +1,17 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public class Gestor {
-    private ArrayList<Cliente> clientes;
+    private LinkedList<Cliente> clientes;
 
     public Gestor(){
-        clientes = new ArrayList<>();
+        clientes = new LinkedList<>();
     }
 
     public void registarCliente(Cliente cliente){

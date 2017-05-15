@@ -15,6 +15,11 @@ public class Gestor {
     }
 
     public void registarCliente(Cliente cliente){
+        if (clientes.contains(cliente)){
+            cliente = null;
+            System.out.println("Ya hay un cliente con este NIF/DNI");
+        }
+
         if (cliente != null){
             clientes.add(cliente);
         }

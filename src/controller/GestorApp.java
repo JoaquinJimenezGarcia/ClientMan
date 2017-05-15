@@ -40,7 +40,7 @@ public class GestorApp {
                     }
                 case 5:
                     if (gestor.longitud()>0){
-                        
+
                     }
                 default:
                     break;

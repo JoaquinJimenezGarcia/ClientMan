@@ -57,7 +57,7 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-        Cliente cliente = gestor.transicionCliente(leerIdentificador());
+        Cliente cliente = gestor.transicionCliente(clienteComprador());
         clientesPendientes.registarCliente(cliente);
     }
 
@@ -85,14 +85,27 @@ public class GestorApp {
         return option;
     }
 
+    public Cliente clienteComprador(){
+        Scanner input = new Scanner(System.in);
+        Cliente cliente;
+        String identificador;
+
+        gestor.mostrarClientes();
+
+        System.out.println("Introduzca el DNI/NIF: ");
+        identificador = input.next();
+
+        cliente =
+    }
+
     public String leerIdentificador(){
         Scanner input = new Scanner (System.in);
         String identificador;
 
         gestor.mostrarClientes();
 
-            System.out.println("Introduzca el DNI/NIF: ");
-            identificador = input.next();
+        System.out.println("Introduzca el DNI/NIF: ");
+        identificador = input.next();
 
         return identificador;
     }

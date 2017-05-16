@@ -11,11 +11,11 @@ import java.util.LinkedList;
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
-    Persona p1 = new Persona("Avd/ Alcalde Luis",687149550,"77847616E","Joaquin", "Jimenez","garcia@joaquin.com", 687149550);
-    Persona p2 = new Persona("Avd/ Cofradia",689678502,"89675434R","Jorge", "Caro","semana@santa.com", 624859602);
-    Persona p3 = new Persona("Avd/ Bat Cueva",687149550,"65895434T","Batman", "Jimenez","soy@batman.com", 687149550);
+    Persona p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "Joaquin", "Jimenez", "garcia@joaquin.com", 687149550);
+    Persona p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "Jorge", "Caro", "semana@santa.com", 624859602);
+    Persona p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T", "Batman", "Jimenez", "soy@batman.com", 687149550);
 
-    public Gestor(){
+    public Gestor() {
         clientes = new LinkedList<>();
 
         clientes.add(p1);
@@ -23,39 +23,46 @@ public class Gestor {
         clientes.add(p3);
     }
 
-    public void registarCliente(Cliente cliente){
-        if (clientes.contains(cliente)){
+    public void registarCliente(Cliente cliente) {
+        if (clientes.contains(cliente)) {
             cliente = null;
             System.out.println("Ya hay un cliente con este NIF/DNI");
         }
 
-        if (cliente != null){
+        if (cliente != null) {
             clientes.add(cliente);
         }
     }
 
-    public int longitud(){
+    public int longitud() {
         return clientes.size();
     }
 
-    public void mostrarClientes(){
-        for (Cliente cliente: clientes){
+    public void mostrarClientes() {
+        for (Cliente cliente : clientes) {
             System.out.println(cliente);
         }
     }
 
-    public void borrarCliente(String identificador){
+    public void borrarCliente(String identificador) {
         Iterator<Cliente> itCliente = clientes.iterator();
-        while (itCliente.hasNext()){
+        while (itCliente.hasNext()) {
             Cliente cliente = itCliente.next();
 
-            if (cliente.getDni_nif().equals(identificador)){
+            if (cliente.getDni_nif().equals(identificador)) {
                 itCliente.remove();
             }
         }
     }
 
-    public Cliente transicionCliente(String identificador){
-        return clientes.get(clientes.indexOf(identificador));
+    public Cliente transicionCliente(String identificador) {
+        for (Cliente cliente: clientes) {
+
+            if (cliente.getDni_nif().equals(identificador)) {
+                return cliente;
+            } else {
+                return null;
+            }
+        }
     }
 }

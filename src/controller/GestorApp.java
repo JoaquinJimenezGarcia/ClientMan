@@ -1,9 +1,6 @@
 package controller;
 
-import model.Cliente;
-import model.Empresa;
-import model.Gestor;
-import model.Persona;
+import model.*;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -13,9 +10,13 @@ import java.util.Scanner;
  */
 public class GestorApp {
     Gestor gestor;
+    ClientesPendientes clientesPendientes;
+    ClientesRecibidos clientesRecibidos;
 
     public GestorApp(){
         gestor = new Gestor();
+        clientesPendientes = new ClientesPendientes();
+        clientesRecibidos = new ClientesRecibidos();
     }
 
     public void run(){

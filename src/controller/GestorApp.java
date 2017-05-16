@@ -89,8 +89,10 @@ public class GestorApp {
 
         gestor.mostrarClientes();
 
-        System.out.println("Introduzca el id: ");
-        id = input.nextInt();
+        do {
+            System.out.println("Introduzca el id: ");
+            id = input.nextInt();
+        }while (id > gestor.longitud() || id <= 0);
 
         return id;
     }

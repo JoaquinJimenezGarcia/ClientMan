@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -10,8 +11,16 @@ import java.util.LinkedList;
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
+    Persona p1 = new Persona("Avd/ Alcalde Luis",687149550,new Date(),"Joaquin", "Jimenez","garcia@joaquin.com", 687149550, "77847616E");
+    Persona p2 = new Persona("Avd/ Cofradia",689678502,new Date(),"Jorge", "Caro","semana@santa.com", 624859602, "88756916D");
+    Persona p3 = new Persona("Avd/ Bat Cueva",687149550,new Date(),"Batman", "Jimenez","soy@batman.com", 687149550, "77847616E");
+
     public Gestor(){
         clientes = new LinkedList<>();
+
+        clientes.add(p1);
+        clientes.add(p2);
+        clientes.add(p3);
     }
 
     public void registarCliente(Cliente cliente){

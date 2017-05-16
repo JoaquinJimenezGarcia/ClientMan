@@ -57,8 +57,8 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-       // Cliente cliente = gestor.transicionCliente(leerIdentificador());
-        //clientesPendientes.registarCliente(cliente);
+        Cliente cliente = gestor.transicionCliente(leerIdentificador());
+        clientesPendientes.registarCliente(cliente);
     }
 
     public int showMenu(){
@@ -160,7 +160,6 @@ public class GestorApp {
         int telfEncargado;
         String direccionFacturacion;
         int telfContacto;
-        Date fechaAlta;
         Cliente cliente;
 
         do {
@@ -197,8 +196,6 @@ public class GestorApp {
             System.out.println("Télefono Contacto: ");
             telfContacto = input.nextInt();
         }while (telfContacto <= 0);
-
-        fechaAlta = new Date();
 
         cliente = new Empresa(direccionFacturacion, telfContacto, nif, nombre, direccion, encargado, telfEncargado);
 

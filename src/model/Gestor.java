@@ -55,7 +55,7 @@ public class Gestor {
         }
     }
 
-    public Cliente transicionCliente(int id){
-        return clientes.get(id);
+    public Cliente transicionCliente(String identificador){
+        return clientes.get(clientes.indexOf(identificador));
     }
 }

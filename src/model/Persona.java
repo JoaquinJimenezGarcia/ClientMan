@@ -11,23 +11,20 @@ public class Persona extends Cliente implements Comprobador{
     private String apellidos;
     private String email;
     private int telf;
-    private String dni;
 
     public Persona() {
         this.nombre = "Desconocido";
         this.apellidos = "Desconocido";
         this.email = "Desconocido";
         this.telf = 0;
-        this.dni = "Desconocido";
     }
 
-    public Persona(String direccionFacturacion, int telfContacto, Date date, String nombre, String apellidos, String email, int telf, String dni) {
-        super(direccionFacturacion, telfContacto, date);
+    public Persona(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String apellidos, String email, int telf) {
+        super(direccionFacturacion, telfContacto, dni_nif);
         this.setNombre(nombre);
         this.setApellidos(apellidos);
         this.setEmail(email);
         this.setTelf(telf);
-        this.setDni(dni);
     }
 
     public String getNombre() {
@@ -74,38 +71,13 @@ public class Persona extends Cliente implements Comprobador{
         this.telf = telf;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        if (dni.equals("")) {
-            this.dni = "Desconocido";
-        } else {
-            this.dni = dni;
-        }
-    }
-
     @Override
     public String toString() {
         return  "Persona( " +
-                "ID = " + super.getId() +
                 ", Nombre = " + nombre +
                 ", Apellidos = " + apellidos +
                 ", E-mail = " + email +
                 ", Teléfono = " + telf +
-                ", DNI = " + dni +
                 " - " + super.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if (this == obj){ return true; }
-        if (obj == null){ return false;}
-        if (this.getClass() != obj.getClass()){ return false; }
-
-        Persona p = (Persona)obj;
-
-        return Objects.equals(this.getDni(), p.getDni());
     }
 }

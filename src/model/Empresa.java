@@ -8,23 +8,20 @@ import java.util.Objects;
  */
 public class Empresa extends Cliente implements Comprobador{
     private String nombre;
-    private String nif;
     private String direccion;
     private String encargado;
     private int telfEncargado;
 
     public Empresa() {
         this.nombre = "Desconocido";
-        this.nif = "Desconocido";
         this.direccion = "NS/NC";
         this.encargado = "Sin encargado";
         this.telfEncargado = 0;
     }
 
-    public Empresa(String direccionFacturacion, int telfContacto, Date date, String nombre, String nif, String direccion, String encargado, int telfEncargado) {
-        super(direccionFacturacion, telfContacto, date);
+    public Empresa(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String direccion, String encargado, int telfEncargado) {
+        super(direccionFacturacion, telfContacto, dni_nif);
         this.setNombre(nombre);
-        this.setNif(nif);
         this.setDireccion(direccion);
         this.setEncargado(encargado);
         this.setTelfEncargado(telfEncargado);
@@ -39,18 +36,6 @@ public class Empresa extends Cliente implements Comprobador{
             this.nombre = "Desconocido";
         }else {
             this.nombre = nombre;
-        }
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        if (nif.equals("")) {
-            this.nif = "Desconocido";
-        } else {
-            this.nif = nif;
         }
     }
 
@@ -89,23 +74,10 @@ public class Empresa extends Cliente implements Comprobador{
     @Override
     public String toString() {
         return "Empresa (" +
-                "ID = " +
                 ", Nombre = " + nombre +
-                ", NIF = " + nif +
                 ", Dirección = " + direccion +
                 ", Encargado = " + encargado +
                 ", Teléfono del Encargado = " + telfEncargado +
                 " - " + super.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if (this == obj){ return true; }
-        if (obj == null){ return false;}
-        if (this.getClass() != obj.getClass()){ return false; }
-
-        Empresa emp = (Empresa)obj;
-
-        return Objects.equals(this.getNif(), emp.getNif());
     }
 }

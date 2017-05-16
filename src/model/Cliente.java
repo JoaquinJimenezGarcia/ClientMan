@@ -1,33 +1,41 @@
 package model;
 
-import java.util.Comparator;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public abstract class Cliente {
-    private int id;
     private String direccionFacturacion;
     private int telfContacto;
     Date date;
+    String dni_nif;
 
     public Cliente() {
         this.direccionFacturacion = "NS/NC";
         this.telfContacto = 0;
         this.date = new Date();
-        this.id++;
+        this.dni_nif = "AAAAAAA0";
     }
 
-    public Cliente(String direccionFacturacion, int telfContacto, Date date) {
-        this.setId();
+    public Cliente(String direccionFacturacion, int telfContacto, String dni_nif) {
         this.setDireccionFacturacion(direccionFacturacion);
         this.setTelfContacto(telfContacto);
         this.date = new Date();
+        this.setDni_nif(dni_nif);
     }
 
-    public void setId() {
-        this.id++;
+    public String getDni_nif() {
+        return dni_nif;
+    }
+
+    public void setDni_nif(String dni_nif) {
+        if (dni_nif.equals("")) {
+            this.dni_nif = "000000A";
+        } else {
+            this.dni_nif = dni_nif;
+        }
     }
 
     public String getDireccionFacturacion() {
@@ -54,20 +62,23 @@ public abstract class Cliente {
         return date;
     }
 
-    public int getId(){ return id; }
-
     @Override
     public String toString() {
         return "Dirección de Facturación = " + direccionFacturacion +
                 ", Teléfono de Contacto = " + telfContacto +
                 ", Fecha de Registro = " + date +
+                ", DNI/NIF = " + dni_nif +
                 " )";
     }
 
-    public static Comparator<Cliente> comparadorPorID = new Comparator<Cliente>() {
-        @Override
-        public int compare(Cliente c1, Cliente c2) {
-            return c1.getId() - c2.getId();
-        }
-    };
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){ return true; }
+        if (obj == null){ return false;}
+        if (this.getClass() != obj.getClass()){ return false; }
+
+        Cliente c = (Persona)obj;
+
+        return Objects.equals(this.getDni_nif(), c.getDni_nif());
+    }
 }

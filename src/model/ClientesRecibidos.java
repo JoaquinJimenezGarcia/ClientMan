@@ -30,8 +30,6 @@ public class ClientesRecibidos {
     }
 
     public void mostrarClientes(){
-        Collections.sort(clientesRecibidos, Cliente.comparadorPorID);
-
         for (Cliente cliente: clientesRecibidos){
             System.out.println(cliente);
         }
@@ -42,7 +40,7 @@ public class ClientesRecibidos {
         while (itCliente.hasNext()){
             Cliente cliente = itCliente.next();
 
-            if (cliente.getId() == id){
+            if (cliente.getDni_nif().equals(id)){
                 itCliente.remove();
             }
         }

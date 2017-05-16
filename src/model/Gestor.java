@@ -9,12 +9,11 @@ import java.util.LinkedList;
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public class Gestor {
-    private int id;
     private LinkedList<Cliente> clientes;
 
-    Persona p1 = new Persona("Avd/ Alcalde Luis",687149550,new Date(),"Joaquin", "Jimenez","garcia@joaquin.com", 687149550, "77847616E");
-    Persona p2 = new Persona("Avd/ Cofradia",689678502,new Date(),"Jorge", "Caro","semana@santa.com", 624859602, "88756916D");
-    Persona p3 = new Persona("Avd/ Bat Cueva",687149550,new Date(),"Batman", "Jimenez","soy@batman.com", 687149550, "77847616E");
+    Persona p1 = new Persona("Avd/ Alcalde Luis",687149550,"77847616E","Joaquin", "Jimenez","garcia@joaquin.com", 687149550);
+    Persona p2 = new Persona("Avd/ Cofradia",689678502,"89675434R","Jorge", "Caro","semana@santa.com", 624859602);
+    Persona p3 = new Persona("Avd/ Bat Cueva",687149550,"65895434T","Batman", "Jimenez","soy@batman.com", 687149550);
 
     public Gestor(){
         clientes = new LinkedList<>();
@@ -24,10 +23,6 @@ public class Gestor {
         clientes.add(p3);
     }
 
-    public int getId(){
-        return id;
-    }
-
     public void registarCliente(Cliente cliente){
         if (clientes.contains(cliente)){
             cliente = null;
@@ -35,7 +30,6 @@ public class Gestor {
         }
 
         if (cliente != null){
-            id++;
             clientes.add(cliente);
         }
     }
@@ -45,19 +39,17 @@ public class Gestor {
     }
 
     public void mostrarClientes(){
-        Collections.sort(clientes, Cliente.comparadorPorID);
-
         for (Cliente cliente: clientes){
             System.out.println(cliente);
         }
     }
 
-    public void borrarCliente(int id){
+    public void borrarCliente(String identificador){
         Iterator<Cliente> itCliente = clientes.iterator();
         while (itCliente.hasNext()){
             Cliente cliente = itCliente.next();
 
-            if (cliente.getId() == id){
+            if (cliente.getDni_nif().equals(identificador)){
                 itCliente.remove();
             }
         }

@@ -9,7 +9,6 @@ import java.util.Scanner;
  * Created by garci on 11/05/2017.
  */
 public class GestorApp {
-    int id;
     Gestor gestor;
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;
@@ -38,7 +37,7 @@ public class GestorApp {
                     break;
                 case 4:
                     if (gestor.longitud()>0){
-                        gestor.borrarCliente(leerId());
+                        gestor.borrarCliente(leerIdentificador());
                     }
                     break;
                 case 5:
@@ -58,8 +57,8 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-        Cliente cliente = gestor.transicionCliente(leerId());
-        clientesPendientes.registarCliente(cliente);
+       // Cliente cliente = gestor.transicionCliente(leerIdentificador());
+        //clientesPendientes.registarCliente(cliente);
     }
 
     public int showMenu(){
@@ -86,18 +85,16 @@ public class GestorApp {
         return option;
     }
 
-    public int leerId(){
+    public String leerIdentificador(){
         Scanner input = new Scanner (System.in);
-        int id;
+        String identificador;
 
         gestor.mostrarClientes();
 
-        do {
-            System.out.println("Introduzca el id: ");
-            id = input.nextInt();
-        }while (id > gestor.longitud() || id <= 0);
+            System.out.println("Introduzca el DNI/NIF: ");
+            identificador = input.next();
 
-        return id;
+        return identificador;
     }
 
     public Cliente leerPersona(){
@@ -149,7 +146,7 @@ public class GestorApp {
 
         fechaAlta = new Date();
 
-        cliente = new Persona(direccionFacturacion, telfContacto, fechaAlta, nombre, apellidos, email, telf, dni);
+        cliente = new Persona(direccionFacturacion, telfContacto, dni, nombre, apellidos, email, telf);
 
         return cliente;
     }
@@ -203,7 +200,7 @@ public class GestorApp {
 
         fechaAlta = new Date();
 
-        cliente = new Empresa(direccionFacturacion, telfContacto, fechaAlta, nombre, nif, direccion, encargado, telfEncargado);
+        cliente = new Empresa(direccionFacturacion, telfContacto, nif, nombre, direccion, encargado, telfEncargado);
 
         return cliente;
     }

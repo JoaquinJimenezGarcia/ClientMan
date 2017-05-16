@@ -17,7 +17,7 @@ public class ClientesPendientes {
     public void registarCliente(Cliente cliente){
         if (clientesPendientes.contains(cliente)){
             cliente = null;
-            System.out.println("Ya hay un cliente con este NIF/DNI");
+            System.out.println("Este cliente ya está pendiente de una máquina.");
         }
 
         if (cliente != null){

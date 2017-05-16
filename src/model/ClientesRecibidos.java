@@ -17,7 +17,7 @@ public class ClientesRecibidos {
     public void registarCliente(Cliente cliente){
         if (clientesRecibidos.contains(cliente)){
             cliente = null;
-            System.out.println("Ya hay un cliente con este NIF/DNI");
+            System.out.println("Este cliente ya ha recibido su máquina.");
         }
 
         if (cliente != null){

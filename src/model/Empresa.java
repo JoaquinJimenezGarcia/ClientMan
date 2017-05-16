@@ -89,7 +89,7 @@ public class Empresa extends Cliente implements Comprobador{
     @Override
     public String toString() {
         return "Empresa (" +
-                "ID = " + super.getId() +
+                "ID = " +
                 ", Nombre = " + nombre +
                 ", NIF = " + nif +
                 ", Dirección = " + direccion +

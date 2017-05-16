@@ -24,6 +24,10 @@ public class Gestor {
         clientes.add(p3);
     }
 
+    public int getId(){
+        return id;
+    }
+
     public void registarCliente(Cliente cliente){
         if (clientes.contains(cliente)){
             cliente = null;

@@ -9,6 +9,7 @@ import java.util.LinkedList;
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public class Gestor {
+    private int id;
     private LinkedList<Cliente> clientes;
 
     Persona p1 = new Persona("Avd/ Alcalde Luis",687149550,new Date(),"Joaquin", "Jimenez","garcia@joaquin.com", 687149550, "77847616E");
@@ -30,6 +31,7 @@ public class Gestor {
         }
 
         if (cliente != null){
+            id++;
             clientes.add(cliente);
         }
     }

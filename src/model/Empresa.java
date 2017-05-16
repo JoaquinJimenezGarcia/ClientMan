@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
-public class Empresa extends Cliente{
+public class Empresa extends Cliente implements Comprobador{
     private String nombre;
     private String nif;
     private String direccion;

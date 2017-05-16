@@ -9,6 +9,7 @@ import java.util.Scanner;
  * Created by garci on 11/05/2017.
  */
 public class GestorApp {
+    int id;
     Gestor gestor;
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;

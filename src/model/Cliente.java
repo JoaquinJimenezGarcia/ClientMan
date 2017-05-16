@@ -20,10 +20,14 @@ public abstract class Cliente {
     }
 
     public Cliente(String direccionFacturacion, int telfContacto, Date date) {
-        this.id++;
+        this.setId();
         this.setDireccionFacturacion(direccionFacturacion);
         this.setTelfContacto(telfContacto);
         this.date = new Date();
+    }
+
+    public void setId() {
+        this.id++;
     }
 
     public String getDireccionFacturacion() {

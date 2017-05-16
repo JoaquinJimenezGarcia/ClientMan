@@ -41,12 +41,17 @@ public class GestorApp {
                     }
                 case 5:
                     if (gestor.longitud()>0){
-
+                        venderThermomix();
                     }
                 default:
                     break;
             }
         }
+    }
+
+    public void venderThermomix(){
+        Cliente cliente = gestor.transicionCliente(leerId());
+        clientesPendientes.registarCliente(cliente);
     }
 
     public int showMenu(){
@@ -76,7 +81,7 @@ public class GestorApp {
 
         gestor.mostrarClientes();
 
-        System.out.println("Introduzca el id a borrar: ");
+        System.out.println("Introduzca el id: ");
         id = input.nextInt();
 
         return id;

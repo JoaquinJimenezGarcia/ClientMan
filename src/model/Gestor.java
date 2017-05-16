@@ -47,4 +47,8 @@ public class Gestor {
             }
         }
     }
+
+    public Cliente transicionCliente(int id){
+        return clientes.get(id);
+    }
 }

@@ -74,7 +74,7 @@ public class Persona extends Cliente implements Comprobador{
     @Override
     public String toString() {
         return  "Persona( " +
-                ", Nombre = " + nombre +
+                "Nombre = " + nombre +
                 ", Apellidos = " + apellidos +
                 ", E-mail = " + email +
                 ", Teléfono = " + telf +

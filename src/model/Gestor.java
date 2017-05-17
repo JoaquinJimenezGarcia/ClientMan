@@ -56,13 +56,13 @@ public class Gestor {
     }
 
     public Cliente transicionCliente(String identificador) {
-        for (Cliente cliente: clientes) {
+        Cliente cliente = null;
 
-            if (cliente.getDni_nif().equals(identificador)) {
-                return cliente;
-            } else {
-                return null;
+        for (Cliente c: clientes) {
+            if (c.getDni_nif().equals(identificador)) {
+                cliente = c;
             }
         }
+        return cliente;
     }
 }

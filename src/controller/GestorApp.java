@@ -57,8 +57,7 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-        Cliente cliente = gestor.transicionCliente(clienteComprador());
-        clientesPendientes.registarCliente(cliente);
+        clientesPendientes.registarCliente(clienteComprador());
     }
 
     public int showMenu(){
@@ -73,7 +72,7 @@ public class GestorApp {
             System.out.println("* 4. Borrar Clientes             *");
             System.out.println("* 5. Vender Thermomix            *");
         }
-        if (clientesRecibidos.longitud()>0){
+        if (clientesPendientes.longitud()>0){
             System.out.println("* 6. Clientes Pendientes         *");
         }
         System.out.println("* 0. Salir                       *");
@@ -95,7 +94,9 @@ public class GestorApp {
         System.out.println("Introduzca el DNI/NIF: ");
         identificador = input.next();
 
-        cliente =
+        cliente = gestor.transicionCliente(identificador);
+
+        return cliente;
     }
 
     public String leerIdentificador(){

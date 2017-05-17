@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -22,6 +21,9 @@ public class ClientesPendientes {
 
         if (cliente != null){
             clientesPendientes.add(cliente);
+            System.out.println("Cliente añadido a la espera.");
+        }else{
+            System.out.println("Cliente no encontrado.");
         }
     }
 

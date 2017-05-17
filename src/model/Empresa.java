@@ -73,8 +73,8 @@ public class Empresa extends Cliente implements Comprobador{
 
     @Override
     public String toString() {
-        return "Empresa (" +
-                ", Nombre = " + nombre +
+        return "Empresa( " +
+                "Nombre = " + nombre +
                 ", Dirección = " + direccion +
                 ", Encargado = " + encargado +
                 ", Teléfono del Encargado = " + telfEncargado +

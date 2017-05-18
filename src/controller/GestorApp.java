@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -120,13 +119,12 @@ public class GestorApp {
         String dni;
         String direccionFacturacion;
         int telfContacto;
-        Date fechaAlta;
         Cliente cliente;
 
         do {
             System.out.println("Nombre Cliente: ");
             nombre = input.nextLine();
-        }while (nombre.equals(""));
+        }while (nombre.equals("") || nombre.length()<3);
 
         do {
             System.out.println("Apellidos Cliente: ");
@@ -141,12 +139,12 @@ public class GestorApp {
         do {
             System.out.println("Télefono Cliente: ");
             telf = input.nextInt();
-        }while (telf <= 0);
+        }while (telf <= 600000000);
 
         do {
             System.out.println("DNI Cliente: ");
             dni = input.next();
-        }while (dni.equals(""));
+        }while (dni.equals("") || dni.length()<9);
 
         do {
             System.out.println("Dirección de Facturación: ");
@@ -156,9 +154,7 @@ public class GestorApp {
         do {
             System.out.println("Télefono Contacto: ");
             telfContacto = input.nextInt();
-        }while (telfContacto <= 0);
-
-        fechaAlta = new Date();
+        }while (telfContacto <= 600000000);
 
         cliente = new Persona(direccionFacturacion, telfContacto, dni, nombre, apellidos, email, telf);
 
@@ -179,12 +175,12 @@ public class GestorApp {
         do {
             System.out.println("Nombre Empresa: ");
             nombre = input.nextLine();
-        }while (nombre.equals(""));
+        }while (nombre.equals("")|| nombre.length()<5);
 
         do {
             System.out.println("NIF Empresa: ");
             nif = input.next();
-        }while (nif.equals(""));
+        }while (nif.equals("")|| nif.length()<9);
 
         do {
             System.out.println("Direccion Empresa: ");
@@ -199,7 +195,7 @@ public class GestorApp {
         do {
             System.out.println("Télefono Encargado: ");
             telfEncargado = input.nextInt();
-        }while (telfEncargado <= 0);
+        }while (telfEncargado <= 600000000);
 
         do {
             System.out.println("Dirección de Facturación: ");
@@ -209,7 +205,7 @@ public class GestorApp {
         do {
             System.out.println("Télefono Contacto: ");
             telfContacto = input.nextInt();
-        }while (telfContacto <= 0);
+        }while (telfContacto <= 600000000);
 
         cliente = new Empresa(direccionFacturacion, telfContacto, nif, nombre, direccion, encargado, telfEncargado);
 

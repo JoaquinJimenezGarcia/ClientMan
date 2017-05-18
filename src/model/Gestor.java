@@ -51,6 +51,8 @@ public class Gestor {
 
             if (cliente.getDni_nif().equals(identificador)) {
                 itCliente.remove();
+            }else{
+                System.out.println("El Cliente no existe.");
             }
         }
     }

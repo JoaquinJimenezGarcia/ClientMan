@@ -9,14 +9,16 @@ import java.util.Objects;
 public abstract class Cliente {
     private String direccionFacturacion;
     private int telfContacto;
-    Date date;
-    String dni_nif;
+    private Date date;
+    private String dni_nif;
+    private boolean vendido;
 
     public Cliente() {
         this.direccionFacturacion = "NS/NC";
         this.telfContacto = 0;
         this.date = new Date();
         this.dni_nif = "AAAAAAA0";
+        this.vendido = false;
     }
 
     public Cliente(String direccionFacturacion, int telfContacto, String dni_nif) {
@@ -24,6 +26,14 @@ public abstract class Cliente {
         this.setTelfContacto(telfContacto);
         this.date = new Date();
         this.setDni_nif(dni_nif);
+    }
+
+    public boolean isVendido() {
+        return vendido;
+    }
+
+    public void setVendido(boolean vendido) {
+        this.vendido = vendido;
     }
 
     public String getDni_nif() {
@@ -62,12 +72,21 @@ public abstract class Cliente {
         return date;
     }
 
+    private String siVendido(){
+        if (this.isVendido()){
+            return "Vendido en: " + new Date();
+        }else{
+            return "";
+        }
+    }
+
     @Override
     public String toString() {
         return "Dirección de Facturación = " + direccionFacturacion +
                 ", Teléfono de Contacto = " + telfContacto +
                 ", Fecha de Registro = " + date +
                 ", DNI/NIF = " + dni_nif +
+                ", " + siVendido() +
                 " )";
     }
 

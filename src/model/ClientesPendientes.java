@@ -23,7 +23,7 @@ public class ClientesPendientes {
             clientesPendientes.add(cliente);
             System.out.println("Cliente añadido a la espera.");
         }else{
-            System.out.println("Cliente no encontrado.");
+            System.out.println("Cliente no añadido.");
         }
     }
 

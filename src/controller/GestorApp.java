@@ -45,6 +45,10 @@ public class GestorApp {
                     }
                     break;
                 case 6:
+                    if (gestor.longitud()>0){
+                    }
+                    break;
+                case 7:
                     if (clientesPendientes.longitud()>0){
                         clientesPendientes.mostrarClientes();
                     }
@@ -70,9 +74,10 @@ public class GestorApp {
             System.out.println("* 3. Clientes registrados        *");
             System.out.println("* 4. Borrar Clientes             *");
             System.out.println("* 5. Vender Thermomix            *");
+            System.out.println("* 6. Buscar por Nombre           *");
         }
         if (clientesPendientes.longitud()>0){
-            System.out.println("* 6. Clientes Pendientes         *");
+            System.out.println("* 7. Clientes Pendientes         *");
         }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");

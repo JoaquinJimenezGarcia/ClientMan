@@ -46,6 +46,7 @@ public class GestorApp {
                     break;
                 case 6:
                     if (gestor.longitud()>0){
+                        gestor.mostrarClientesPorNombre(leerNombre());
                     }
                     break;
                 case 7:
@@ -57,6 +58,16 @@ public class GestorApp {
                     break;
             }
         }
+    }
+
+    public String leerNombre(){
+        String nombre;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Inserte NOMBRE a buscar: ");
+        nombre = input.nextLine();
+
+        return nombre;
     }
 
     public void venderThermomix(){

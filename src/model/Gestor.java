@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -58,6 +56,14 @@ public class Gestor {
         }
         if (comprobador == null){
             System.out.println("El Cliente no existe.");
+        }
+    }
+
+    public void mostrarClientesPorNombre(String nombre){
+        for (Cliente c: clientes){
+            if (c.getNombre().equals(nombre)){
+                System.out.println(c);
+            }
         }
     }
 

@@ -1,42 +1,24 @@
 package model;
 
-import java.util.Date;
-import java.util.Objects;
-
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public class Persona extends Cliente implements Comprobador{
-    private String nombre;
     private String apellidos;
     private String email;
     private int telf;
 
     public Persona() {
-        this.nombre = "Desconocido";
         this.apellidos = "Desconocido";
         this.email = "Desconocido";
         this.telf = 0;
     }
 
     public Persona(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String apellidos, String email, int telf) {
-        super(direccionFacturacion, telfContacto, dni_nif);
-        this.setNombre(nombre);
+        super(nombre, direccionFacturacion, telfContacto, dni_nif);
         this.setApellidos(apellidos);
         this.setEmail(email);
         this.setTelf(telf);
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        if (nombre.equals("")){
-            this.nombre = "Desconocido";
-        }else {
-            this.nombre = nombre;
-        }
     }
 
     public String getApellidos() {
@@ -74,7 +56,7 @@ public class Persona extends Cliente implements Comprobador{
     @Override
     public String toString() {
         return  "Persona( " +
-                "Nombre = " + nombre +
+                "Nombre = " + super.getNombre() +
                 ", Apellidos = " + apellidos +
                 ", E-mail = " + email +
                 ", Teléfono = " + telf +

@@ -7,6 +7,7 @@ import java.util.Objects;
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public abstract class Cliente {
+    private String nombre;
     private String direccionFacturacion;
     private int telfContacto;
     private Date date;
@@ -14,6 +15,7 @@ public abstract class Cliente {
     private boolean vendido;
 
     public Cliente() {
+        this.nombre = "Desconocido";
         this.direccionFacturacion = "NS/NC";
         this.telfContacto = 0;
         this.date = new Date();
@@ -21,11 +23,24 @@ public abstract class Cliente {
         this.vendido = false;
     }
 
-    public Cliente(String direccionFacturacion, int telfContacto, String dni_nif) {
+    public Cliente(String nombre, String direccionFacturacion, int telfContacto, String dni_nif) {
+        this.setNombre(nombre);
         this.setDireccionFacturacion(direccionFacturacion);
         this.setTelfContacto(telfContacto);
         this.date = new Date();
         this.setDni_nif(dni_nif);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        if (nombre.equals("")){
+            this.nombre = "Desconocido";
+        }else {
+            this.nombre = nombre;
+        }
     }
 
     public boolean isVendido() {

@@ -7,36 +7,21 @@ import java.util.Objects;
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
 public class Empresa extends Cliente implements Comprobador{
-    private String nombre;
     private String direccion;
     private String encargado;
     private int telfEncargado;
 
     public Empresa() {
-        this.nombre = "Desconocido";
         this.direccion = "NS/NC";
         this.encargado = "Sin encargado";
         this.telfEncargado = 0;
     }
 
     public Empresa(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String direccion, String encargado, int telfEncargado) {
-        super(direccionFacturacion, telfContacto, dni_nif);
-        this.setNombre(nombre);
+        super(nombre, direccionFacturacion, telfContacto, dni_nif);
         this.setDireccion(direccion);
         this.setEncargado(encargado);
         this.setTelfEncargado(telfEncargado);
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        if (nombre.equals("")){
-            this.nombre = "Desconocido";
-        }else {
-            this.nombre = nombre;
-        }
     }
 
     public String getDireccion() {
@@ -74,7 +59,7 @@ public class Empresa extends Cliente implements Comprobador{
     @Override
     public String toString() {
         return "Empresa( " +
-                "Nombre = " + nombre +
+                "Nombre = " + super.getNombre() +
                 ", Dirección = " + direccion +
                 ", Encargado = " + encargado +
                 ", Teléfono del Encargado = " + telfEncargado +

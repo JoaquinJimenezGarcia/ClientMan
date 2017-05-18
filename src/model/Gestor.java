@@ -45,15 +45,19 @@ public class Gestor {
     }
 
     public void borrarCliente(String identificador) {
+        String comprobador = null;
         Iterator<Cliente> itCliente = clientes.iterator();
         while (itCliente.hasNext()) {
             Cliente cliente = itCliente.next();
 
             if (cliente.getDni_nif().equals(identificador)) {
                 itCliente.remove();
-            }else{
-                System.out.println("El Cliente no existe.");
+                System.out.println("Cliente borrado con éxito.");
+                comprobador = "";
             }
+        }
+        if (comprobador == null){
+            System.out.println("El Cliente no existe.");
         }
     }
 

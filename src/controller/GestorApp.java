@@ -56,7 +56,6 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-        clienteComprador().setVendido(true);
         clientesPendientes.registarCliente(clienteComprador());
     }
 
@@ -95,6 +94,7 @@ public class GestorApp {
         identificador = input.next();
 
         cliente = gestor.transicionCliente(identificador);
+        cliente.setVendido(true);
 
         return cliente;
     }

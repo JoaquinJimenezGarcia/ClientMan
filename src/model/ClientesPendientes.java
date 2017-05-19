@@ -60,7 +60,10 @@ public class ClientesPendientes {
             try {
                 if (cliente.getFechaRecesion() != null) {
                     if (cliente.getFechaRecesion().before(actual)) {
+                        clientesPendientes.remove(cliente);
                         return cliente;
+                    }else{
+                        System.out.println("Aún no ha llegado ningún pedido.");
                     }
                 }
             }catch (NullPointerException e){

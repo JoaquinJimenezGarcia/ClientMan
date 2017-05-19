@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -88,8 +89,11 @@ public abstract class Cliente {
     }
 
     private String siVendido(){
+        Date fechaVenta = new Date();
+
         if (this.isVendido()){
-            return "Vendido en: " + new Date();
+            fechaLlegada(fechaVenta);
+            return "Vendido en: " + fechaVenta;
         }else{
             return "";
         }
@@ -114,5 +118,14 @@ public abstract class Cliente {
         Cliente c = (Persona)obj;
 
         return Objects.equals(this.getDni_nif(), c.getDni_nif());
+    }
+
+    public Date fechaLlegada(Date fecha){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(fecha); // Configuramos la fecha que se recibe
+        calendar.add(Calendar.DAY_OF_YEAR, 3);  // numero de días a añadir, o restar en caso de días<0
+
+        return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
     }
 }

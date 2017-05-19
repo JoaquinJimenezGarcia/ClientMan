@@ -34,15 +34,4 @@ public class ClientesRecibidos {
             System.out.println(cliente);
         }
     }
-
-    public void borrarCliente(int id){
-        Iterator<Cliente> itCliente = clientesRecibidos.iterator();
-        while (itCliente.hasNext()){
-            Cliente cliente = itCliente.next();
-
-            if (cliente.getDni_nif().equals(id)){
-                itCliente.remove();
-            }
-        }
-    }
 }

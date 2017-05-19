@@ -9,7 +9,6 @@ import java.util.LinkedList;
  */
 public class ClientesPendientes {
     private LinkedList<Cliente> clientesPendientes;
-    ClientesRecibidos clientesRecibidos;
 
     public ClientesPendientes(){
         clientesPendientes = new LinkedList<>();
@@ -36,17 +35,6 @@ public class ClientesPendientes {
     public void mostrarClientes(){
         for (Cliente cliente: clientesPendientes){
             System.out.println(cliente);
-        }
-    }
-
-    public void borrarCliente(int id){
-        Iterator<Cliente> itCliente = clientesPendientes.iterator();
-        while (itCliente.hasNext()){
-            Cliente cliente = itCliente.next();
-
-            if (cliente.getDni_nif().equals(id)){
-                itCliente.remove();
-            }
         }
     }
 

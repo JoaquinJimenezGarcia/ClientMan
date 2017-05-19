@@ -54,6 +54,16 @@ public class GestorApp {
                         clientesPendientes.mostrarClientes();
                     }
                     break;
+                case 8:
+                    if (clientesPendientes.longitud()>0){
+                        clientesPendientes.comprobarLlegada();
+                    }
+                    break;
+                case 9:
+                    if (clientesRecibidos.longitud()>0){
+                        clientesRecibidos.mostrarClientes();
+                    }
+                    break;
                 default:
                     break;
             }
@@ -89,6 +99,10 @@ public class GestorApp {
         }
         if (clientesPendientes.longitud()>0){
             System.out.println("* 7. Clientes Pendientes         *");
+            System.out.println("* 8. Comprobar Llegada           *");
+        }
+        if (clientesRecibidos.longitud()>0){
+            System.out.println("* 9. Transaciones Terminadas     *");
         }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");

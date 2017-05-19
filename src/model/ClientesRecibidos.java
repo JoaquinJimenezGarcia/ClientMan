@@ -21,7 +21,7 @@ public class ClientesRecibidos {
 
         if (cliente != null){
             clientesRecibidos.add(cliente);
-            System.out.println("Cliente no encontrado.");
+            System.out.println("Un cliente ya ha recibido su Thermomix.");
         }
     }
 

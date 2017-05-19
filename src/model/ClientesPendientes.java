@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -8,6 +9,7 @@ import java.util.LinkedList;
  */
 public class ClientesPendientes {
     private LinkedList<Cliente> clientesPendientes;
+    ClientesRecibidos clientesRecibidos;
 
     public ClientesPendientes(){
         clientesPendientes = new LinkedList<>();
@@ -44,6 +46,17 @@ public class ClientesPendientes {
 
             if (cliente.getDni_nif().equals(id)){
                 itCliente.remove();
+            }
+        }
+    }
+
+    public void comprobarLlegada(){
+        Iterator<Cliente> itCliente = clientesPendientes.iterator();
+        while (itCliente.hasNext()){
+            Cliente cliente = itCliente.next();
+
+            if (cliente.getFechaRecesion().before(new Date())){
+                clientesRecibidos.registarCliente(cliente);
             }
         }
     }

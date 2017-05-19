@@ -14,6 +14,8 @@ public abstract class Cliente {
     private Date date;
     private String dni_nif;
     private boolean vendido;
+    private Date fechaRecesion;
+    private Date fechaVenta;
 
     public Cliente() {
         this.nombre = "Desconocido";
@@ -64,6 +66,14 @@ public abstract class Cliente {
         }
     }
 
+    public Date getFechaRecesion(){
+        return fechaRecesion;
+    }
+
+    public Date getFechaVenta(){
+        return fechaVenta;
+    }
+
     public String getDireccionFacturacion() {
         return direccionFacturacion;
     }
@@ -89,9 +99,8 @@ public abstract class Cliente {
     }
 
     private Date siVendido(){
-        Date fechaVenta = new Date();
-
         if (this.isVendido()){
+            this.fechaVenta = new Date();
             return fechaVenta;
         }else{
             return null;
@@ -135,6 +144,8 @@ public abstract class Cliente {
         calendar.setTime(fecha); // Configuramos la fecha que se recibe
         calendar.add(Calendar.DAY_OF_YEAR, DIAS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
 
-        return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+        fechaRecesion = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+
+        return  fechaRecesion;
     }
 }

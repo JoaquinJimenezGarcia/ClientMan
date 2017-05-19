@@ -121,12 +121,17 @@ public class GestorApp {
         gestor.mostrarClientes();
 
         System.out.println("Introduzca el DNI/NIF: ");
-        identificador = input.next();
 
-        cliente = gestor.transicionCliente(identificador);
-        cliente.setVendido(true);
+        try{
+            identificador = input.next();
+            cliente = gestor.transicionCliente(identificador);
+            cliente.setVendido(true);
+            return cliente;
+        }catch(NullPointerException e){
+            System.out.println("DNI inexistente.");
+        }
 
-        return cliente;
+        return null;
     }
 
     public String leerIdentificador(){

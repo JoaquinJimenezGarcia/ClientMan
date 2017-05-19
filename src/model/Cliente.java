@@ -88,25 +88,33 @@ public abstract class Cliente {
         return date;
     }
 
-    private String siVendido(){
+    private Date siVendido(){
         Date fechaVenta = new Date();
 
         if (this.isVendido()){
-            fechaLlegada(fechaVenta);
-            return "Vendido en: " + fechaVenta;
+            return fechaVenta;
         }else{
-            return "";
+            return null;
         }
     }
 
     @Override
     public String toString() {
-        return "Dirección de Facturación = " + direccionFacturacion +
-                ", Teléfono de Contacto = " + telfContacto +
-                ", Fecha de Registro = " + date +
-                ", DNI/NIF = " + dni_nif +
-                ", " + siVendido() +
-                " )";
+        if (this.isVendido()) {
+            return "Dirección de Facturación = " + direccionFacturacion +
+                    ", Teléfono de Contacto = " + telfContacto +
+                    ", Fecha de Registro = " + date +
+                    ", DNI/NIF = " + dni_nif +
+                    ", Vendido en = " + siVendido() +
+                    ", Llegará en = " + fechaLlegada(siVendido()) +
+                    " )";
+        } else {
+            return "Dirección de Facturación = " + direccionFacturacion +
+                    ", Teléfono de Contacto = " + telfContacto +
+                    ", Fecha de Registro = " + date +
+                    ", DNI/NIF = " + dni_nif +
+                    " )";
+        }
     }
 
     @Override

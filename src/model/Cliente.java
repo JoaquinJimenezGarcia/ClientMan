@@ -130,9 +130,10 @@ public abstract class Cliente {
 
     public Date fechaLlegada(Date fecha){
         Calendar calendar = Calendar.getInstance();
+        final int DIAS_ESPERA = 3;
 
         calendar.setTime(fecha); // Configuramos la fecha que se recibe
-        calendar.add(Calendar.DAY_OF_YEAR, 3);  // numero de días a añadir, o restar en caso de días<0
+        calendar.add(Calendar.DAY_OF_YEAR, DIAS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
 
         return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
     }

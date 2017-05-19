@@ -56,7 +56,7 @@ public class GestorApp {
                     break;
                 case 8:
                     if (clientesPendientes.longitud()>0){
-                        clientesPendientes.comprobarLlegada();
+                        clienteRecibido(clientesPendientes.comprobarLlegada());
                     }
                     break;
                 case 9:
@@ -69,6 +69,12 @@ public class GestorApp {
             }
         }
     }
+
+
+    public void clienteRecibido(Cliente cliente){
+        clientesRecibidos.registarCliente(cliente);
+    }
+
 
     public String leerNombre(){
         String nombre;
@@ -126,6 +132,7 @@ public class GestorApp {
             identificador = input.next();
             cliente = gestor.transicionCliente(identificador);
             cliente.setVendido(true);
+            cliente.venta();
             return cliente;
         }catch(NullPointerException e){
             System.out.println("DNI inexistente.");

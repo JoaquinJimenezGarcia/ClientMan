@@ -98,9 +98,10 @@ public abstract class Cliente {
         return date;
     }
 
-    private Date siVendido(){
+    public Date venta(){
         if (this.isVendido()){
             this.fechaVenta = new Date();
+            fechaLlegada(fechaVenta);
             return fechaVenta;
         }else{
             return null;
@@ -114,8 +115,8 @@ public abstract class Cliente {
                     ", Teléfono de Contacto = " + telfContacto +
                     ", Fecha de Registro = " + date +
                     ", DNI/NIF = " + dni_nif +
-                    ", Vendido en = " + siVendido() +
-                    ", Llegará en = " + fechaLlegada(siVendido()) +
+                    ", Vendido en = " + fechaVenta +
+                    ", Llegará en = " + fechaRecesion +
                     " )";
         } else {
             return "Dirección de Facturación = " + direccionFacturacion +
@@ -139,13 +140,13 @@ public abstract class Cliente {
 
     public Date fechaLlegada(Date fecha){
         Calendar calendar = Calendar.getInstance();
-        final int DIAS_ESPERA = 3;
+        final int DIAS_ESPERA = 30;
 
         calendar.setTime(fecha); // Configuramos la fecha que se recibe
-        calendar.add(Calendar.DAY_OF_YEAR, DIAS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
+        calendar.add(Calendar.SECOND, DIAS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
 
-        fechaRecesion = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+        this.fechaRecesion = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
 
-        return  fechaRecesion;
+        return fechaRecesion;
     }
 }

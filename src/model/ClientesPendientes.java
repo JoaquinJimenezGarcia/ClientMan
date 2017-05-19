@@ -50,14 +50,24 @@ public class ClientesPendientes {
         }
     }
 
-    public void comprobarLlegada(){
+    public Cliente comprobarLlegada(){
+        Date actual = new Date();
+
         Iterator<Cliente> itCliente = clientesPendientes.iterator();
         while (itCliente.hasNext()){
             Cliente cliente = itCliente.next();
 
-            if (cliente.getFechaRecesion().before(new Date())){
-                clientesRecibidos.registarCliente(cliente);
+            try {
+                if (cliente.getFechaRecesion() != null) {
+                    if (cliente.getFechaRecesion().before(actual)) {
+                        return cliente;
+                    }
+                }
+            }catch (NullPointerException e){
+                System.out.println("No hay clientes");
             }
         }
+
+        return null;
     }
 }

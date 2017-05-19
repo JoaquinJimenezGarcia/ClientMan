@@ -63,6 +63,8 @@ public class Gestor {
         for (Cliente c: clientes){
             if (c.getNombre().equals(nombre)){
                 System.out.println(c);
+            }else{
+                System.out.println("Cliente no encontrado. Asegúrese de haberlo escrito correctamente.");
             }
         }
     }

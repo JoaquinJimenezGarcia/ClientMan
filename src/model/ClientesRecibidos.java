@@ -15,8 +15,8 @@ public class ClientesRecibidos {
 
     public void registarCliente(Cliente cliente){
         if (clientesRecibidos.contains(cliente)){
+            System.out.println("El cliente con DNI " + cliente.getDni_nif() + ", ya había recibido una máquina. No se volverá a añadir a la lista.");
             cliente = null;
-            System.out.println("Este cliente ya ha recibido su máquina.");
         }
 
         if (cliente != null){

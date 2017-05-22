@@ -111,8 +111,8 @@ public class Gestor {
         Correo c = new Correo();
         EnvioCorreo controlador = new EnvioCorreo();
 
-        c.setPasswd("kishcuwgacjxwgjj");
-        c.setUsuarioCorreo("garcia.jjimenez@gmail.com");
+        c.setPasswd("PASSWD");
+        c.setUsuarioCorreo("CORREO");
         c.setAsunto("Thermomix Vendida");
         c.setDestino(cliente.getEmailContacto());
         c.setMsg("Este mensaje se ha generado automáticamente para " +

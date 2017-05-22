@@ -214,6 +214,8 @@ public class GestorApp {
             dni = input.next();
         }while (dni.equals("") || dni.length()<9);
 
+        input.nextLine();
+
         do {
             System.out.println("Dirección de Facturación: ");
             direccionFacturacion = input.nextLine();
@@ -251,6 +253,8 @@ public class GestorApp {
             nif = input.next();
         }while (nif.equals("")|| nif.length()<9);
 
+        input.nextLine();
+
         do {
             System.out.println("Direccion Empresa: ");
             direccion = input.nextLine();
@@ -265,6 +269,8 @@ public class GestorApp {
             System.out.println("Télefono Encargado: ");
             telfEncargado = input.nextInt();
         }while (telfEncargado <= 600000000);
+
+        input.nextLine();
 
         do {
             System.out.println("Dirección de Facturación: ");

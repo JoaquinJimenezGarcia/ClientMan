@@ -61,13 +61,25 @@ public class Gestor {
         }
     }
 
-    public void mostrarClientesPorNombre(String nombre){
+    public Cliente buscarClientesPorNombre(String nombre){
         for (Cliente c: clientes){
             if (c.getNombre().equals(nombre)){
-                System.out.println(c);
-            }else{
-                System.out.println("Cliente no encontrado. Asegúrese de haberlo escrito correctamente.");
+                return c;
             }
+        }
+
+        return null;
+    }
+
+    public void mostrarClientesPorNombre(Cliente cliente){
+        try {
+            if (cliente!=null) {
+                System.out.println(cliente);
+            }else{
+                System.out.println("No se ha encontrado el cliente.");
+            }
+        }catch (NullPointerException e){
+            System.out.println("No se ha encontrado el cliente");
         }
     }
 

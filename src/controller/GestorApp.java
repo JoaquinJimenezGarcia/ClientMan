@@ -47,7 +47,7 @@ public class GestorApp {
                     break;
                 case 6:
                     if (gestor.longitud()>0){
-                        gestor.mostrarClientesPorNombre(leerNombre());
+                        gestor.mostrarClientesPorNombre(gestor.buscarClientesPorNombre(leerNombre()));
                     }
                     break;
                 case 7:

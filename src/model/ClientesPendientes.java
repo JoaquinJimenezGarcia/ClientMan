@@ -14,6 +14,14 @@ public class ClientesPendientes {
         clientesPendientes = new LinkedList<>();
     }
 
+    public boolean existencia(Cliente cliente){
+        if (clientesPendientes.contains(cliente)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public void registarCliente(Cliente cliente){
         if (clientesPendientes.contains(cliente)){
             cliente = null;

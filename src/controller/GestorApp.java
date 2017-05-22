@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -87,7 +88,16 @@ public class GestorApp {
     }
 
     public void venderThermomix(){
-        clientesPendientes.registarCliente(clienteComprador());
+        Cliente cliente = clienteComprador();
+
+        try{
+            if (!clientesPendientes.existencia(cliente)){
+                gestor.enviarCorreo((Persona)cliente);
+                clientesPendientes.registarCliente(cliente);
+            }
+        }catch (NullPointerException e){
+
+        }
     }
 
     public int showMenu(){
@@ -114,9 +124,13 @@ public class GestorApp {
         System.out.println("**********************************");
 
         System.out.println("Opción: ");
-        option = input.nextInt();
-
-        return option;
+        try {
+            option = input.nextInt();
+            return option;
+        }catch (InputMismatchException e){
+            System.out.println("Opción inválida.");
+        }
+        return showMenu();
     }
 
     public Cliente clienteComprador(){
@@ -128,15 +142,20 @@ public class GestorApp {
 
         System.out.println("Introduzca el DNI/NIF: ");
 
-        try{
-            identificador = input.next();
-            cliente = gestor.transicionCliente(identificador);
-            cliente.setVendido(true);
-            cliente.venta();
-            return cliente;
-        }catch(NullPointerException e){
-            System.out.println("DNI inexistente.");
-        }
+            try {
+                identificador = input.next();
+                cliente = gestor.transicionCliente(identificador);
+                if (!clientesPendientes.existencia(cliente)) {
+                    cliente.setVendido(true);
+                    cliente.venta();
+                    return cliente;
+                }else{
+                    System.out.println("El cliente ya está esperando una máquina");
+                }
+                return null;
+            } catch (NullPointerException e) {
+                System.out.println("DNI inexistente.");
+            }
 
         return null;
     }

@@ -1,5 +1,7 @@
 package model;
 
+import controller.EnvioCorreo;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -9,7 +11,7 @@ import java.util.LinkedList;
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
-    Persona p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "Joaquin", "Jimenez", "garcia@joaquin.com", 687149550);
+    Persona p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "Joaquin", "Jimenez", "garcia.jjimenez@gmail.com", 687149550);
     Persona p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "Jorge", "Caro", "semana@santa.com", 624859602);
     Persona p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T", "Batman", "Jimenez", "soy@batman.com", 687149550);
 
@@ -63,6 +65,8 @@ public class Gestor {
         for (Cliente c: clientes){
             if (c.getNombre().equals(nombre)){
                 System.out.println(c);
+            }else{
+                System.out.println("Cliente no encontrado. Asegúrese de haberlo escrito correctamente.");
             }
         }
     }
@@ -76,5 +80,26 @@ public class Gestor {
             }
         }
         return cliente;
+    }
+
+    public void enviarCorreo(Persona persona){
+        Correo c = new Correo();
+        EnvioCorreo controlador = new EnvioCorreo();
+
+        c.setPasswd("PASSWD");
+        c.setUsuarioCorreo("CORREO");
+        c.setAsunto("Thermomix Vendida");
+        c.setDestino(persona.getEmail());
+        c.setMsg("Este mensaje se ha generado automáticamente para " +
+                "avisarle de que su nueva Thermomix ya se encuentra en trámites" +
+                "y será entregada en su domicilio indicado tan pronto como" +
+                "sea posible. " +
+                "Esperamos que la disfrute.");
+
+        if (controlador.enviarCorreo(c)){
+            System.out.println("Enviado correo de venta");
+        }else{
+            System.out.println("No se ha podido enviar el correo de venta.");
+        }
     }
 }

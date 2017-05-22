@@ -71,7 +71,17 @@ public class Gestor {
         return null;
     }
 
-    public void mostrarClientesPorNombre(Cliente cliente){
+    public Cliente buscarClientesPorDNI(String dni){
+        for (Cliente c: clientes){
+            if (c.getDni_nif().equals(dni)){
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    public void mostrarClientesBuscados(Cliente cliente){
         try {
             if (cliente!=null) {
                 System.out.println(cliente);

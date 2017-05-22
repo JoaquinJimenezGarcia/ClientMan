@@ -47,7 +47,7 @@ public class GestorApp {
                     break;
                 case 6:
                     if (gestor.longitud()>0){
-                        gestor.mostrarClientesPorNombre(gestor.buscarClientesPorNombre(leerNombre()));
+                        gestor.mostrarClientesBuscados(gestor.buscarClientesPorNombre(leerNombre()));
                     }
                     break;
                 case 7:
@@ -63,6 +63,11 @@ public class GestorApp {
                 case 9:
                     if (clientesRecibidos.longitud()>0){
                         clientesRecibidos.mostrarClientes();
+                    }
+                    break;
+                case 10:
+                    if (gestor.longitud()>0){
+                        gestor.mostrarClientesBuscados(gestor.buscarClientesPorDNI(leerIdentificador()));
                     }
                     break;
                 default:
@@ -114,6 +119,7 @@ public class GestorApp {
             System.out.println("* 4. Borrar Clientes             *");
             System.out.println("* 5. Vender Thermomix            *");
             System.out.println("* 6. Buscar por Nombre           *");
+            System.out.println("* 10. Buscar por DNI/NIF         *");
         }
         if (clientesPendientes.longitud()>0){
             System.out.println("* 7. Clientes Pendientes         *");

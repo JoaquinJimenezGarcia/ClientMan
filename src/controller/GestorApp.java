@@ -92,7 +92,9 @@ public class GestorApp {
 
         try{
             if (!clientesPendientes.existencia(cliente)){
-                gestor.enviarCorreo((Persona)cliente);
+                if (cliente.getClass().getName().equals("Persona")){
+                    gestor.enviarCorreo((Persona)cliente);
+                }
                 clientesPendientes.registarCliente(cliente);
             }
         }catch (NullPointerException e){

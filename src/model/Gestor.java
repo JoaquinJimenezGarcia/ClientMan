@@ -2,6 +2,7 @@ package model;
 
 import controller.EnvioCorreo;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -11,9 +12,9 @@ import java.util.LinkedList;
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
-    Persona p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "Joaquin", "Jimenez", "garcia.jjimenez@gmail.com", 687149550);
-    Persona p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "Jorge", "Caro", "semana@santa.com", 624859602);
-    Persona p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T", "Batman", "Jimenez", "soy@batman.com", 687149550);
+    Cliente p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "garcia.jjimenez@gmail.com", "Joaquin", "Jimenez",  687149550);
+    Cliente p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "meloinvento2@gmail.com", "Jorge", "Caro",  624859602);
+    Cliente p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T","meloinvento@gmail.com", "Batman", "Jimenez", 687149550);
 
     public Gestor() {
         clientes = new LinkedList<>();
@@ -39,6 +40,8 @@ public class Gestor {
     }
 
     public void mostrarClientes() {
+        Collections.sort(clientes,Cliente.comparadorPorNombre);
+
         for (Cliente cliente : clientes) {
             System.out.println(cliente);
         }
@@ -104,14 +107,14 @@ public class Gestor {
         return cliente;
     }
 
-    public void enviarCorreo(Persona persona){
+    public void enviarCorreo(Cliente cliente){
         Correo c = new Correo();
         EnvioCorreo controlador = new EnvioCorreo();
 
-        c.setPasswd("PASSWD");
-        c.setUsuarioCorreo("CORREO");
+        c.setPasswd("kishcuwgacjxwgjj");
+        c.setUsuarioCorreo("garcia.jjimenez@gmail.com");
         c.setAsunto("Thermomix Vendida");
-        c.setDestino(persona.getEmail());
+        c.setDestino(cliente.getEmailContacto());
         c.setMsg("Este mensaje se ha generado automáticamente para " +
                 "avisarle de que su nueva Thermomix ya se encuentra en trámites" +
                 "y será entregada en su domicilio indicado tan pronto como" +

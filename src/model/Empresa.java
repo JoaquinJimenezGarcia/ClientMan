@@ -17,8 +17,8 @@ public class Empresa extends Cliente implements Comprobador{
         this.telfEncargado = 0;
     }
 
-    public Empresa(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String direccion, String encargado, int telfEncargado) {
-        super(nombre, direccionFacturacion, telfContacto, dni_nif);
+    public Empresa(String direccionFacturacion, int telfContacto, String dni_nif, String emailContacto, String nombre, String direccion, String encargado, int telfEncargado) {
+        super(nombre, direccionFacturacion, telfContacto, dni_nif,emailContacto);
         this.setDireccion(direccion);
         this.setEncargado(encargado);
         this.setTelfEncargado(telfEncargado);

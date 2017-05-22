@@ -97,9 +97,7 @@ public class GestorApp {
 
         try{
             if (!clientesPendientes.existencia(cliente)){
-                if (cliente.getClass().getName().equals("Persona")){
-                    gestor.enviarCorreo((Persona)cliente);
-                }
+                gestor.enviarCorreo(cliente);
                 clientesPendientes.registarCliente(cliente);
             }
         }catch (NullPointerException e){
@@ -184,7 +182,7 @@ public class GestorApp {
         Scanner input = new Scanner (System.in);
         String nombre;
         String apellidos;
-        String email;
+        String emailContacto;
         int telf;
         String dni;
         String direccionFacturacion;
@@ -202,9 +200,9 @@ public class GestorApp {
         }while (apellidos.equals(""));
 
         do {
-            System.out.println("E-Mail Cliente: ");
-            email = input.next();
-        }while (email.equals(""));
+            System.out.println("E-Mail Contacto: ");
+            emailContacto = input.next();
+        }while (emailContacto.equals(""));
 
         do {
             System.out.println("Télefono Cliente: ");
@@ -226,7 +224,7 @@ public class GestorApp {
             telfContacto = input.nextInt();
         }while (telfContacto <= 600000000);
 
-        cliente = new Persona(direccionFacturacion, telfContacto, dni, nombre, apellidos, email, telf);
+        cliente = new Persona(direccionFacturacion, telfContacto, dni, emailContacto, nombre, apellidos, telf);
 
         return cliente;
     }
@@ -237,6 +235,7 @@ public class GestorApp {
         String nif;
         String direccion;
         String encargado;
+        String emailContacto;
         int telfEncargado;
         String direccionFacturacion;
         int telfContacto;
@@ -273,11 +272,16 @@ public class GestorApp {
         }while (direccionFacturacion.equals(""));
 
         do {
+            System.out.println("Email de Contacto: ");
+            emailContacto = input.nextLine();
+        }while (emailContacto.equals(""));
+
+        do {
             System.out.println("Télefono Contacto: ");
             telfContacto = input.nextInt();
         }while (telfContacto <= 600000000);
 
-        cliente = new Empresa(direccionFacturacion, telfContacto, nif, nombre, direccion, encargado, telfEncargado);
+        cliente = new Empresa(direccionFacturacion, telfContacto, nif, emailContacto, nombre, direccion, encargado, telfEncargado);
 
         return cliente;
     }

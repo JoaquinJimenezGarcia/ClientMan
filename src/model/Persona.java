@@ -5,19 +5,16 @@ package model;
  */
 public class Persona extends Cliente implements Comprobador{
     private String apellidos;
-    private String email;
     private int telf;
 
     public Persona() {
         this.apellidos = "Desconocido";
-        this.email = "Desconocido";
         this.telf = 0;
     }
 
-    public Persona(String direccionFacturacion, int telfContacto, String dni_nif, String nombre, String apellidos, String email, int telf) {
-        super(nombre, direccionFacturacion, telfContacto, dni_nif);
+    public Persona(String direccionFacturacion, int telfContacto, String dni_nif, String emailContacto, String nombre, String apellidos, int telf) {
+        super(nombre, direccionFacturacion, telfContacto, dni_nif, emailContacto);
         this.setApellidos(apellidos);
-        this.setEmail(email);
         this.setTelf(telf);
     }
 
@@ -30,18 +27,6 @@ public class Persona extends Cliente implements Comprobador{
             this.apellidos = "Desconocido";
         }else{
             this.apellidos = apellidos;
-        }
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (email.equals("")) {
-            this.email = "Desconocido";
-        } else {
-            this.email = email;
         }
     }
 
@@ -58,7 +43,7 @@ public class Persona extends Cliente implements Comprobador{
         return  "Persona( " +
                 "Nombre = " + super.getNombre() +
                 ", Apellidos = " + apellidos +
-                ", E-mail = " + email +
+                ", E-mail = " + super.getEmailContacto() +
                 ", Teléfono = " + telf +
                 " - " + super.toString();
     }

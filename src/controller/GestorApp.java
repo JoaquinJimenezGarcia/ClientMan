@@ -218,13 +218,15 @@ public class GestorApp {
             emailContacto = input.next();
         }while (emailContacto.equals(""));
 
-        System.out.println("Introduzca el número del cliente: ");
-        telf = numeroTelf();
+        do {
+            System.out.println("Introduzca el número del cliente: ");
+            telf = numeroTelf();
+        }while(telf < 600000000 || telf > 799999999);
 
         do {
             System.out.println("DNI Cliente: ");
             dni = input.next();
-        }while (dni.equals("") && dni.length()<9);
+        }while (dni.equals("") );
 
         input.nextLine();
 
@@ -233,8 +235,11 @@ public class GestorApp {
             direccionFacturacion = input.nextLine();
         }while (direccionFacturacion.equals(""));
 
-        System.out.println("Télefono Contacto: ");
-        telfContacto = numeroTelf();
+        do{
+            System.out.println("Télefono Contacto: ");
+            telfContacto = numeroTelf();
+        }while (telfContacto < 600000000 || telfContacto > 799999999);
+
 
 
         cliente = new Persona(direccionFacturacion, telfContacto, dni, emailContacto, nombre, apellidos, telf);
@@ -276,8 +281,10 @@ public class GestorApp {
             encargado = input.nextLine();
         }while (encargado.equals(""));
 
-        System.out.println("Télefono Encargado: ");
-        telfEncargado = numeroTelf();
+        do{
+            System.out.println("Télefono Encargado: ");
+            telfEncargado = numeroTelf();
+        }while(telfEncargado < 600000000 || telfEncargado > 799999999);
 
         do {
             System.out.println("Dirección de Facturación: ");
@@ -289,8 +296,10 @@ public class GestorApp {
             emailContacto = input.nextLine();
         }while (emailContacto.equals(""));
 
-        System.out.println("Télefono Contacto: ");
-        telfContacto = numeroTelf();
+        do {
+            System.out.println("Télefono Contacto: ");
+            telfContacto = numeroTelf();
+        }while (telfContacto < 600000000 || telfContacto > 799999999);
 
         cliente = new Empresa(direccionFacturacion, telfContacto, nif, emailContacto, nombre, direccion, encargado, telfEncargado);
 

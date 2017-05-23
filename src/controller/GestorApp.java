@@ -226,7 +226,7 @@ public class GestorApp {
         do {
             System.out.println("DNI Cliente: ");
             dni = input.next();
-        }while (dni.equals("") );
+        }while (dni.length() != 9 );
 
         input.nextLine();
 
@@ -267,7 +267,7 @@ public class GestorApp {
         do {
             System.out.println("NIF Empresa: ");
             nif = input.next();
-        }while (nif.equals("")&& nif.length()<9);
+        }while (nif.length() != 9);
 
         input.nextLine();
 

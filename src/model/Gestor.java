@@ -14,16 +14,16 @@ import java.util.LinkedList;
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
-    Cliente p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "garcia.jjimenez@gmail.com", "Joaquin", "Jimenez",  687149550);
-    Cliente p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "meloinvento2@gmail.com", "Jorge", "Caro",  624859602);
-    Cliente p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T","meloinvento@gmail.com", "Batman", "Jimenez", 687149550);
+    //Cliente p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "garcia.jjimenez@gmail.com", "Joaquin", "Jimenez",  687149550);
+    //Cliente p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "meloinvento2@gmail.com", "Jorge", "Caro",  624859602);
+    //Cliente p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T","meloinvento@gmail.com", "Batman", "Jimenez", 687149550);
 
     public Gestor() {
         clientes = new LinkedList<>();
 
-        clientes.add(p1);
+        /*clientes.add(p1);
         clientes.add(p2);
-        clientes.add(p3);
+        clientes.add(p3);*/
     }
 
     public void registarCliente(Cliente cliente) {

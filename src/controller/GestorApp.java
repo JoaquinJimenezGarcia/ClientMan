@@ -22,6 +22,10 @@ public class GestorApp {
     public void run(){
         int option;
 
+        gestor.cargarClientesRegistrados();
+        clientesRecibidos.cargarClientesRecibidos();
+        clientesPendientes.cargarClientesPendientes();
+
         while ((option = showMenu())!= 0){
             switch (option) {
                 case 1:
@@ -74,6 +78,10 @@ public class GestorApp {
                     break;
             }
         }
+
+        gestor.guardarClientesRegistrados();
+        clientesRecibidos.guardarClientesRecibidos();
+        clientesPendientes.guardarClientesPendientes();
     }
 
 

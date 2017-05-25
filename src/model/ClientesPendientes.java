@@ -1,5 +1,6 @@
 package model;
 
+import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -68,5 +69,31 @@ public class ClientesPendientes {
         }
 
         return null;
+    }
+
+    public void guardarClientesPendientes() {
+        try {
+            ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("info/clientesPendientes.dat"));
+            fos.writeObject(clientesPendientes);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cargarClientesPendientes(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("info/clientesPendientes.dat"));
+
+            clientesPendientes = (LinkedList<Cliente>) ois.readObject();
+
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+
+        }
     }
 }

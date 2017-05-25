@@ -2,6 +2,8 @@ package model;
 
 import controller.EnvioCorreo;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -125,6 +127,32 @@ public class Gestor {
             System.out.println("Enviado correo de venta");
         }else{
             System.out.println("No se ha podido enviar el correo de venta.");
+        }
+    }
+
+    public void guardarClientesRegistrados() {
+        try {
+            ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("info/clientesRegistrados.dat"));
+            fos.writeObject(clientes);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cargarClientesRegistrados(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("info/clientesRegistrados.dat"));
+
+            clientes = (LinkedList<Cliente>) ois.readObject();
+
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+
         }
     }
 }

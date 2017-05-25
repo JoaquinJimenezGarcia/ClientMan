@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
-public class Empresa extends Cliente implements Comprobador{
+public class Empresa extends Cliente implements Comprobador, Serializable{
+    private static final long serialVersionUID = -4902841103307778671L;
     private String direccion;
     private String encargado;
     private int telfEncargado;

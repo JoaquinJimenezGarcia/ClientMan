@@ -2,13 +2,15 @@ package model;
 
 import controller.WrongMailException;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.regex.Pattern;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
-public abstract class Cliente {
+public abstract class Cliente implements Serializable{
+    private static final long serialVersionUID = -3536209067986308293L;
     private String nombre;
     private String direccionFacturacion;
     private int telfContacto;

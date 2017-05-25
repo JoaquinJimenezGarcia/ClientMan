@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
-public class Persona extends Cliente implements Comprobador{
+public class Persona extends Cliente implements Comprobador, Serializable{
+    private static final long serialVersionUID = -7105788630314414532L;
     private String apellidos;
     private int telf;
 

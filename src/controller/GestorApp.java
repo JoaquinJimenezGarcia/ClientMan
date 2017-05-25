@@ -170,8 +170,6 @@ public class GestorApp {
         Scanner input = new Scanner (System.in);
         String identificador;
 
-        gestor.mostrarClientes();
-
         System.out.println("Introduzca el DNI/NIF: ");
         identificador = input.next();
 

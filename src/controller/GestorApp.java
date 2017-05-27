@@ -8,20 +8,32 @@ import java.util.Scanner;
 /**
  * Created by garci on 11/05/2017.
  */
+
+/**
+ * Clase de la aplicación que se encarga de llevar a cabo la lógica de la misma
+ */
 public class GestorApp {
     Gestor gestor;
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;
 
+    /**
+     * Constructor para instanciar automáticamente las listas
+     */
     public GestorApp(){
         gestor = new Gestor();
         clientesPendientes = new ClientesPendientes();
         clientesRecibidos = new ClientesRecibidos();
     }
 
+    /**
+     * Es el método al que llama el Main, se encarga de llamar a su vez a una u otra
+     * función dependiendo de lo que el usuario haya elegido en el menú
+     */
     public void run(){
         int option;
 
+        // Antes de nada carga los datos de todos los clientes guardados en la aplicación.
         gestor.cargarClientesRegistrados();
         clientesRecibidos.cargarClientesRecibidos();
         clientesPendientes.cargarClientesPendientes();
@@ -79,17 +91,24 @@ public class GestorApp {
             }
         }
 
+        // Al salir d ela aplicación guarda todos los datos para su posterior uso.
         gestor.guardarClientesRegistrados();
         clientesRecibidos.guardarClientesRecibidos();
         clientesPendientes.guardarClientesPendientes();
     }
 
-
+    /**
+     * Registra un cliente dado en Clientes Recibidos
+     * @param cliente
+     */
     public void clienteRecibido(Cliente cliente){
         clientesRecibidos.registarCliente(cliente);
     }
 
-
+    /**
+     * Lee un nombre de un cliente para buscarlo en la lista.
+     * @return nombre que buscará
+     */
     public String leerNombre(){
         String nombre;
         Scanner input = new Scanner(System.in);
@@ -100,19 +119,29 @@ public class GestorApp {
         return nombre;
     }
 
+    /**
+     * Método usado para vender una Thermomix a un cliente.
+     * Copia el cliente seleccionado, y si no existe en clients pendientes,
+     * lo envía y le manda un correo.
+     */
     public void venderThermomix(){
-        Cliente cliente = clienteComprador();
+        Cliente cliente = clienteComprador(); // Copia el cliente solicitado
 
         try{
-            if (!clientesPendientes.existencia(cliente)){
-                gestor.enviarCorreo(cliente);
-                clientesPendientes.registarCliente(cliente);
+            if (!clientesPendientes.existencia(cliente)){ // Comprueba que no existe ya
+                gestor.enviarCorreo(cliente); // Manda email avisando de su compra
+                clientesPendientes.registarCliente(cliente); // Lo registra en Clientes pendientes
             }
         }catch (NullPointerException e){
 
         }
     }
 
+    /**
+     * Muestra menú con las diferentes opciones para que el usuario indique
+     * qué desea hacer.
+     * @return
+     */
     public int showMenu(){
         Scanner input = new Scanner(System.in);
         int option;
@@ -138,6 +167,11 @@ public class GestorApp {
         System.out.println("**********************************");
 
         System.out.println("Opción: ");
+
+        /**
+         * Te obliga a seleccionar siempre una opción correcta. En caso
+         * contrario, te obligará a volver a elegir una.
+         */
         try {
             option = input.nextInt();
             return option;
@@ -147,33 +181,53 @@ public class GestorApp {
         return showMenu();
     }
 
+    /**
+     * Devuelve un cliente seleccionado que ha comprado una máquina, para
+     * poder ponerlo en la lista de espera.
+     * @return cliente comprador
+     */
     public Cliente clienteComprador(){
         Scanner input = new Scanner(System.in);
         Cliente cliente;
         String identificador;
 
-        gestor.mostrarClientes();
+        gestor.mostrarClientes(); // Muestra todos los clientes
 
         System.out.println("Introduzca el DNI/NIF: ");
 
-            try {
+        /**
+         * Busca por DNI en la lista de todos los clientes. Tras encontrarlo, en caso de no
+         * existir en los clientes pendientes, establece a true la venta, le vende la máquina
+         * y devuelve el cliente para mandarlo a dicha lista de espera.
+         *
+         * En caso de que ya esté en dicha lista, lanza un mensaje informando y no lo vuelve
+         * a pasar.
+         *
+         * Si el cliente no existe, manda un aviso.
+         */
+        try {
                 identificador = input.next();
                 cliente = gestor.transicionCliente(identificador);
                 if (!clientesPendientes.existencia(cliente)) {
                     cliente.setVendido(true);
                     cliente.venta();
-                    return cliente;
+                    return cliente; // Devuelve el cliente a meter
                 }else{
                     System.out.println("El cliente ya está esperando una máquina");
                 }
-                return null;
+                return null; // Devuelve null porque el cliente ya está dentro
             } catch (NullPointerException e) {
-                System.out.println("DNI inexistente.");
+                System.out.println("DNI inexistente."); // Mensaje si el cliente no existe.
             }
 
         return null;
     }
 
+    /**
+     * Devuelve el DNI/NIF del cliente para poder tratarlo
+     * y realizar otras acciones
+     * @return dni de un cliente en concreto
+     */
     public String leerIdentificador(){
         Scanner input = new Scanner (System.in);
         String identificador;
@@ -184,6 +238,10 @@ public class GestorApp {
         return identificador;
     }
 
+    /**
+     * Obliga a meter solamente números
+     * @return numero de telefono (solo caracteres numércos)
+     */
     public int numeroTelf(){
         Scanner input = new Scanner(System.in);
         int telf;
@@ -198,6 +256,11 @@ public class GestorApp {
         return numeroTelf();
     }
 
+    /**
+     * Devuelve el correo en caso de que haya pasado la comprobación.
+     * En caso contrario, volverá a pedirlo hasta que se ingrese uno válido
+     * @return correo cliente válido
+     */
     public String correo(){
         Scanner input = new Scanner(System.in);
         String email;
@@ -212,6 +275,10 @@ public class GestorApp {
         }
     }
 
+    /**
+     * Lee datos de una persona y devuelve un objeto Cliente-Persona.
+     * @return Cliente - Persona
+     */
     public Cliente leerPersona(){
         Scanner input = new Scanner (System.in);
         String nombre;
@@ -264,6 +331,10 @@ public class GestorApp {
         return cliente;
     }
 
+    /**
+     * Lee datos de una empresa y devuelve un objeto Cliente-Empresa.
+     * @return Cliente - Empresa
+     */
     public Cliente leerEmpresa(){
         Scanner input = new Scanner (System.in);
         String nombre;

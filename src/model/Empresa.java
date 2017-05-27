@@ -13,12 +13,26 @@ public class Empresa extends Cliente implements Comprobador, Serializable{
     private String encargado;
     private int telfEncargado;
 
+    /**
+     * Constructor por defecto de Empresa
+     */
     public Empresa() {
         this.direccion = "NS/NC";
         this.encargado = "Sin encargado";
         this.telfEncargado = 0;
     }
 
+    /**
+     * Constructor de Empresa que se usará comunmente para su creación
+     * @param direccionFacturacion
+     * @param telfContacto
+     * @param dni_nif
+     * @param emailContacto
+     * @param nombre
+     * @param direccion
+     * @param encargado
+     * @param telfEncargado
+     */
     public Empresa(String direccionFacturacion, int telfContacto, String dni_nif, String emailContacto, String nombre, String direccion, String encargado, int telfEncargado) {
         super(nombre, direccionFacturacion, telfContacto, dni_nif,emailContacto);
         this.setDireccion(direccion);

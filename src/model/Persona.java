@@ -10,11 +10,24 @@ public class Persona extends Cliente implements Comprobador, Serializable{
     private String apellidos;
     private int telf;
 
+    /**
+     * Constructor por defecto de Persona
+     */
     public Persona() {
         this.apellidos = "Desconocido";
         this.telf = 0;
     }
 
+    /**
+     * Constructor que se usará comunmente para construir el objeto Persona
+     * @param direccionFacturacion
+     * @param telfContacto
+     * @param dni_nif
+     * @param emailContacto
+     * @param nombre
+     * @param apellidos
+     * @param telf
+     */
     public Persona(String direccionFacturacion, int telfContacto, String dni_nif, String emailContacto, String nombre, String apellidos, int telf) {
         super(nombre, direccionFacturacion, telfContacto, dni_nif, emailContacto);
         this.setApellidos(apellidos);

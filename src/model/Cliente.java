@@ -17,6 +17,9 @@ public abstract class Cliente implements Serializable{
     private Date fechaVenta;
     private String emailContacto;
 
+    /**
+     * Constructor por defecto.
+     */
     public Cliente() {
         this.nombre = "Desconocido";
         this.direccionFacturacion = "NS/NC";
@@ -27,6 +30,14 @@ public abstract class Cliente implements Serializable{
         this.emailContacto = "Desconocido";
     }
 
+    /**
+     * Constructor a usar. Creará un cliente con todos sus atributos
+     * @param nombre
+     * @param direccionFacturacion
+     * @param telfContacto
+     * @param dni_nif
+     * @param emailContacto
+     */
     public Cliente(String nombre, String direccionFacturacion, int telfContacto, String dni_nif, String emailContacto) {
         this.setNombre(nombre);
         this.setDireccionFacturacion(direccionFacturacion);
@@ -126,7 +137,7 @@ public abstract class Cliente implements Serializable{
                     ", Fecha de Registro = " + date +
                     ", DNI/NIF = " + dni_nif +
                     ", Vendido en = " + fechaVenta +
-                    ", Llegará en = " + fechaRecesion +
+                    ", Llegada = " + fechaRecesion +
                     " )";
         } else {
             return "Dirección de Facturación = " + direccionFacturacion +
@@ -137,6 +148,11 @@ public abstract class Cliente implements Serializable{
         }
     }
 
+    /**
+     * Comparador por DNI/NIF de los clientes. Para poder hacer búsquedas y comprobaciones
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj){
         if (this == obj){ return true; }
@@ -148,6 +164,9 @@ public abstract class Cliente implements Serializable{
         return Objects.equals(this.getDni_nif(), c.getDni_nif());
     }
 
+    /**
+     * Comparador que comparará los clientes para poder ordenarlos por nombre.
+     */
     public static Comparator<Cliente> comparadorPorNombre = new Comparator<Cliente>() {
         @Override
         public int compare(Cliente c1, Cliente c2) {
@@ -155,15 +174,23 @@ public abstract class Cliente implements Serializable{
         }
     };
 
+    /**
+     * Método que comprobará si un cliente ya ha recibido su máquina.
+     * Para ello comparará la fecha actual con la de venta y verificará
+     * si ha pasado el tiempo establecido (indicado como constante).
+     * Y devolverá la fecha de llegada
+     * @param fecha
+     * @return fecha
+     */
     public Date fechaLlegada(Date fecha){
         Calendar calendar = Calendar.getInstance();
-        final int DIAS_ESPERA = 30;
+        final int SEGUNDOS_ESPERA = 30;
 
         calendar.setTime(fecha); // Configuramos la fecha que se recibe
-        calendar.add(Calendar.SECOND, DIAS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
+        calendar.add(Calendar.SECOND, SEGUNDOS_ESPERA);  // numero de días a añadir, o restar en caso de días<0
 
         this.fechaRecesion = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
 
-        return fechaRecesion;
+        return fechaRecesion; // Devuelve la fecha de llegada.
     }
 }

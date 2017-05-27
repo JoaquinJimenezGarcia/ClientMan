@@ -12,21 +12,25 @@ import java.util.regex.Pattern;
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
+
+/**
+ * Clase encargada de llevar y trabajar la lista de los clientes generales.
+ */
 public class Gestor {
     private LinkedList<Cliente> clientes;
 
-    //Cliente p1 = new Persona("Avd/ Alcalde Luis", 687149550, "77847616E", "garcia.jjimenez@gmail.com", "Joaquin", "Jimenez",  687149550);
-    //Cliente p2 = new Persona("Avd/ Cofradia", 689678502, "89675434R", "meloinvento2@gmail.com", "Jorge", "Caro",  624859602);
-    //Cliente p3 = new Persona("Avd/ Bat Cueva", 687149550, "65895434T","meloinvento@gmail.com", "Batman", "Jimenez", 687149550);
-
+    /**
+     * Constructor para crear el LinkedList
+     */
     public Gestor() {
         clientes = new LinkedList<>();
-
-        /*clientes.add(p1);
-        clientes.add(p2);
-        clientes.add(p3);*/
     }
 
+    /**
+     * Recibido un cliente, lo añadirá en la lista en caso de no tenerlo ya.
+     * Lo verificará por su dni/nif
+     * @param cliente
+     */
     public void registarCliente(Cliente cliente) {
         if (clientes.contains(cliente)) {
             cliente = null;
@@ -39,10 +43,17 @@ public class Gestor {
         }
     }
 
+    /**
+     * Calcula la longitud de la lista
+     * @return el número de clientes en registrados
+     */
     public int longitud() {
         return clientes.size();
     }
 
+    /**
+     * Ordena los clientes por nombre y los muestra
+     */
     public void mostrarClientes() {
         Collections.sort(clientes,Cliente.comparadorPorNombre);
 
@@ -51,6 +62,11 @@ public class Gestor {
         }
     }
 
+    /**
+     * Boora un cliente identificado por su dni/nif dado si existiese.
+     * En caso contrario, lanzará mensaje al usuario.
+     * @param identificador
+     */
     public void borrarCliente(String identificador) {
         String comprobador = null;
         Iterator<Cliente> itCliente = clientes.iterator();
@@ -69,6 +85,11 @@ public class Gestor {
         }
     }
 
+    /**
+     * Buscará un cliente según un nombre dado y lo devolverá
+     * @param nombre
+     * @return cliente buscado
+     */
     public Cliente buscarClientesPorNombre(String nombre){
         for (Cliente c: clientes){
             if (c.getNombre().equals(nombre)){
@@ -76,9 +97,14 @@ public class Gestor {
             }
         }
 
-        return null;
+        return null; // En caso de no encontrarse el nombre entre los clientes devolverá null
     }
 
+    /**
+     * Busca un cliente según un dni/nif dado y lo devolverá
+     * @param dni
+     * @return cliente buscado
+     */
     public Cliente buscarClientesPorDNI(String dni){
         for (Cliente c: clientes){
             if (c.getDni_nif().equals(dni)){
@@ -86,9 +112,16 @@ public class Gestor {
             }
         }
 
-        return null;
+        return null; // En caso de no encontrarse el dni/nif entre los clientes devolverá null
     }
 
+    /**
+     * Imprimirá por pantalla el cliente buscado ya sea por nombre o dni/nif.
+     *
+     * En caso de no haber encontrado ninguno. Avisará de que no se ha encontrado o de que
+     * no existe si se dio un mal dni/nif o nombre.
+     * @param cliente
+     */
     public void mostrarClientesBuscados(Cliente cliente){
         try {
             if (cliente!=null) {
@@ -101,6 +134,11 @@ public class Gestor {
         }
     }
 
+    /**
+     * Buscará un cliente por su dni/nif y lo devolverá para poder trabajar con el
+     * @param identificador
+     * @return cliente solicitado por dni/nif
+     */
     public Cliente transicionCliente(String identificador) {
         Cliente cliente = null;
 
@@ -112,6 +150,13 @@ public class Gestor {
         return cliente;
     }
 
+    /**
+     * Método para enviar un mensaje a un cliente dado como parámerto.
+     * Avisando de que se le vendió una máquina.
+     *
+     * En caso de no haber mandado el correo, avisará.
+     * @param cliente
+     */
     public void enviarCorreo(Cliente cliente){
         Correo c = new Correo();
         EnvioCorreo controlador = new EnvioCorreo();
@@ -133,6 +178,12 @@ public class Gestor {
         }
     }
 
+    /**
+     * Dado un email como parámetro, comprobará si cumple el patrón para verificarlo
+     * como email
+     * @param email
+     * @return true si cumple el parámetro o falso si no lo hace
+     */
     public Boolean comprobarMail(String email){
         String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regex);
@@ -146,6 +197,9 @@ public class Gestor {
         return false;
     }
 
+    /**
+     * Escribirá la lista actual de clientes en info/clientesRegistrados.dat
+     */
     public void guardarClientesRegistrados() {
         try {
             ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("info/clientesRegistrados.dat"));
@@ -158,6 +212,9 @@ public class Gestor {
         }
     }
 
+    /**
+     * Cargará la lista guardada de clientes en info/clientesPendientes.dat
+     */
     public void cargarClientesRegistrados(){
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("info/clientesRegistrados.dat"));

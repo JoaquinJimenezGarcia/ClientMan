@@ -14,14 +14,27 @@ import javax.mail.internet.MimeMultipart;
 /**
  * Created by garci on 22/05/2017.
  */
+
+/**
+ * Clase encargada de la transmisión de correos electrónicos
+ * Usa el cliente de gmail y un correo para mandarlos como si fuese este.
+ */
 public class EnvioCorreo {
+    /**
+     *
+     * @param c = correo que recibe y que intententará enviar
+     * @return true si lo manda o false si ha habido algún error
+     */
     public boolean enviarCorreo(Correo c){
+        /**
+         * Intenta establecer todos los propiedades del correo.
+         */
         try {
             Properties p = new Properties();
             p.put("mail.smtp.host","smtp.gmail.com");
             p.setProperty("mail.smtp.starttls.enable","true");
             p.setProperty("mail.smtp.port", "587");
-            p.setProperty("mail.smtp.user", c.getUsuarioCorreo());
+            p.setProperty("mail.smtp.user", c.getUsuarioCorreo()); // De aquí obtiene el usuario con el que lo mandará
             p.setProperty("mail.smtp.auth","true");
 
             Session s = Session.getDefaultInstance(p,null);
@@ -38,6 +51,8 @@ public class EnvioCorreo {
             mensaje.setContent(m);
 
             Transport t = s.getTransport("smtp");
+            // Hay que especificar un usuario y una contraseña que te proporciona Gmail
+            // al darlo de alta como aplicación de terceros.
             t.connect(c.getUsuarioCorreo(),c.getPasswd());
             t.sendMessage(mensaje, mensaje.getAllRecipients());
             t.close();

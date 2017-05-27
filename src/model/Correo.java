@@ -4,11 +4,14 @@ package model;
  * Created by garci on 22/05/2017.
  */
 public class Correo {
-    private String usuarioCorreo;
-    private String passwd;
-    private String destino;
-    private String asunto;
-    private String msg;
+    /**
+     * Atributos que contendrá el correo
+     */
+    private String usuarioCorreo; // Cuenta de email desde la que se va a mandar
+    private String passwd; // Contraseña proporcionada, en este caso por Google
+    private String destino; // Correo del destinatario
+    private String asunto; // Asunto del correo
+    private String msg; // Cuerpo del mensaje
 
     public String getUsuarioCorreo() {
         return usuarioCorreo;

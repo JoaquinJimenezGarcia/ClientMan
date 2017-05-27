@@ -198,6 +198,20 @@ public class GestorApp {
         return numeroTelf();
     }
 
+    public String correo(){
+        Scanner input = new Scanner(System.in);
+        String email;
+
+        System.out.println("Introduzca E-Mail Contacto: ");
+        email = input.next();
+
+        if (gestor.comprobarMail(email)) {
+            return email;
+        } else {
+            return correo();
+        }
+    }
+
     public Cliente leerPersona(){
         Scanner input = new Scanner (System.in);
         String nombre;
@@ -219,10 +233,7 @@ public class GestorApp {
             apellidos = input.nextLine();
         }while (apellidos.equals(""));
 
-        do {
-            System.out.println("E-Mail Contacto: ");
-            emailContacto = input.next();
-        }while (emailContacto.equals(""));
+            emailContacto = correo();
 
         do {
             System.out.println("Introduzca el número del cliente: ");

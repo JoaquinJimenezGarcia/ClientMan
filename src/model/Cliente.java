@@ -1,11 +1,7 @@
 package model;
 
-import controller.WrongMailException;
-
 import java.io.Serializable;
 import java.util.*;
-import java.util.regex.Pattern;
-
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
  */
@@ -47,24 +43,6 @@ public abstract class Cliente implements Serializable{
     public void setEmailContacto(String emailContacto) {
         this.emailContacto = emailContacto;
     }
-
-    /*private static String leerMail() throws WrongMailException {
-        Scanner s = new Scanner(System.in);
-        String email;
-        String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(regex);
-
-        System.out.println("Introduce el email: ");
-        email = s.next();
-
-        if (pattern.matcher(email).matches()){
-            System.out.println("Email correcto.");
-        }else{
-            throw new WrongMailException("Email incorrecto");
-        }
-
-        return email;
-    }*/
 
     public String getNombre() {
         return nombre;

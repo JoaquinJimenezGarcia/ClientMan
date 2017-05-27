@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 /**
  * Created by joaquinjimenezgarcia on 11/5/17.
@@ -128,6 +129,19 @@ public class Gestor {
         }else{
             System.out.println("No se ha podido enviar el correo de venta.");
         }
+    }
+
+    public Boolean comprobarMail(String email){
+        String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(regex);
+
+        if (pattern.matcher(email).matches()){
+            return true;
+        }else{
+            System.out.println("Introduzca un email correcto.");
+        }
+
+        return false;
     }
 
     public void guardarClientesRegistrados() {

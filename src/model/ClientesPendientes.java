@@ -32,6 +32,7 @@ public class ClientesPendientes {
         if (cliente != null){
             clientesPendientes.add(cliente);
             System.out.println("Cliente añadido a la espera.");
+            guardarClientesPendientes();
         }else{
             System.out.println("Cliente no añadido.");
         }
@@ -58,6 +59,7 @@ public class ClientesPendientes {
                 if (cliente.getFechaRecesion() != null) {
                     if (cliente.getFechaRecesion().before(actual)) {
                         clientesPendientes.remove(cliente);
+                        guardarClientesPendientes();
                         return cliente;
                     }else{
                         System.out.println("Aún no ha llegado ningún pedido.");

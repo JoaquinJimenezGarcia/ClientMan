@@ -35,6 +35,7 @@ public class Gestor {
 
         if (cliente != null) {
             clientes.add(cliente);
+            guardarClientesRegistrados();
         }
     }
 
@@ -60,6 +61,7 @@ public class Gestor {
                 itCliente.remove();
                 System.out.println("Cliente borrado con éxito.");
                 comprobador = "";
+                guardarClientesRegistrados();
             }
         }
         if (comprobador == null){

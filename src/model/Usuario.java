@@ -6,13 +6,14 @@ import java.util.Objects;
 /**
  * Created by joaquinjimenezgarcia on 31/05/2017.
  */
-public class Usuario extends Permisos implements Serializable{
+public class Usuario implements Serializable{
 
     private String nombre;
     private String passwd;
+    private boolean escribir;
+    private boolean leer;
 
-    public Usuario(boolean escribir, boolean leer) {
-        super(escribir, leer);
+    public Usuario() {
         this.nombre = "null";
         this.passwd = "null";
     }
@@ -23,9 +24,26 @@ public class Usuario extends Permisos implements Serializable{
     }
 
     public Usuario(boolean escribir, boolean leer, String nombre, String passwd) {
-        super(escribir, leer);
+        this.setEscribir(escribir);
+        this.setLeer(leer);
         this.setNombre(nombre);
         this.setPasswd(passwd);
+    }
+
+    public boolean isEscribir() {
+        return escribir;
+    }
+
+    public void setEscribir(boolean escribir) {
+        this.escribir = escribir;
+    }
+
+    public boolean isLeer() {
+        return leer;
+    }
+
+    public void setLeer(boolean leer) {
+        this.leer = leer;
     }
 
     public String getNombre() {
@@ -49,7 +67,9 @@ public class Usuario extends Permisos implements Serializable{
         return "Usuario (" +
                 "nombre = " + nombre +
                 ", contraseña = " + passwd +
-                ")" + super.toString();
+                ", permiso lectura = " + leer +
+                ", permiso escritura = " + escribir +
+                ")";
     }
 
     @Override

@@ -36,12 +36,13 @@ public class ListaUsuarios {
     }
 
     public Usuario contiene(Usuario usuario){
-        if (usuariosRegistrados.contains(usuario)){
-            return usuario;
-        } else {
-            System.out.println("El usuario no existe.");
-            return null;
+        for (int i = 0; i < usuariosRegistrados.size(); i++) {
+            if (usuariosRegistrados.get(i).equals(usuario)){
+                return usuariosRegistrados.get(i);
+            }
         }
+        System.out.println("El usuario no existe.");
+        return null;
     }
 
     /**

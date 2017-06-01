@@ -24,7 +24,7 @@ public class GestorApp {
     /**
      * Constructor para instanciar automáticamente las listas
      */
-    public GestorApp(){
+    public GestorApp() {
         gestor = new Gestor();
         clientesPendientes = new ClientesPendientes();
         clientesRecibidos = new ClientesRecibidos();

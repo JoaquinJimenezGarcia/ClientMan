@@ -72,19 +72,35 @@ public class GestorApp {
         while ((option = showMenu())!= 0){
             switch (option) {
                 case 1:
-                    gestor.registarCliente(leerPersona());
+                    if (usuarioFinal.isEscribir()) {
+                        gestor.registarCliente(leerPersona());
+                    } else {
+                        System.out.println("No tiene permisos para añadir un cliente nuevo.");
+                    }
                     break;
                 case 2:
-                    gestor.registarCliente(leerEmpresa());
+                    if (usuarioFinal.isEscribir()){
+                        gestor.registarCliente(leerEmpresa());
+                    } else {
+                        System.out.println("No tiene permisos para añadir un cliente nuevo.");
+                    }
                     break;
                 case 3:
                     if (gestor.longitud()>0){
-                        gestor.mostrarClientes();
+                        if (usuarioFinal.isLeer()) {
+                            gestor.mostrarClientes();
+                        } else {
+                            System.out.println("No tiene permiso de lectura.");
+                        }
                     }
                     break;
                 case 4:
                     if (gestor.longitud()>0){
-                        gestor.borrarCliente(leerIdentificador());
+                        if (usuarioFinal.isEscribir()) {
+                            gestor.borrarCliente(leerIdentificador());
+                        } else {
+                            System.out.println("No tienes permisos para borrar un cliente.");
+                        }
                     }
                     break;
                 case 5:
@@ -94,12 +110,20 @@ public class GestorApp {
                     break;
                 case 6:
                     if (gestor.longitud()>0){
-                        gestor.mostrarClientesBuscados(gestor.buscarClientesPorNombre(leerNombre()));
+                        if (usuarioFinal.isLeer()) {
+                            gestor.mostrarClientesBuscados(gestor.buscarClientesPorNombre(leerNombre()));
+                        } else {
+                            System.out.println("No tiene permisos de lectura.");
+                        }
                     }
                     break;
                 case 7:
                     if (clientesPendientes.longitud()>0){
-                        clientesPendientes.mostrarClientes();
+                        if (usuarioFinal.isLeer()) {
+                            clientesPendientes.mostrarClientes();
+                        } else {
+                            System.out.println("No tiene permiso de lectura.");
+                        }
                     }
                     break;
                 case 8:
@@ -109,12 +133,20 @@ public class GestorApp {
                     break;
                 case 9:
                     if (clientesRecibidos.longitud()>0){
-                        clientesRecibidos.mostrarClientes();
+                        if (usuarioFinal.isLeer()) {
+                            clientesRecibidos.mostrarClientes();
+                        } else {
+                            System.out.println("No tiene permiso de lectura.");
+                        }
                     }
                     break;
                 case 10:
                     if (gestor.longitud()>0){
-                        gestor.mostrarClientesBuscados(gestor.buscarClientesPorDNI(leerIdentificador()));
+                        if (usuarioFinal.isLeer()) {
+                            gestor.mostrarClientesBuscados(gestor.buscarClientesPorDNI(leerIdentificador()));
+                        } else {
+                            System.out.println("No tiene permiso de lectura.");
+                        }
                     }
                     break;
                 default:

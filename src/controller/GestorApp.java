@@ -3,6 +3,7 @@ package controller;
 import model.*;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,9 @@ public class GestorApp {
     Gestor gestor;
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;
+    ListaUsuarios listaUsuarios;
+    Usuario usuario;
+    Usuario usuarioFinal;
 
     /**
      * Constructor para instanciar automáticamente las listas
@@ -24,6 +28,33 @@ public class GestorApp {
         gestor = new Gestor();
         clientesPendientes = new ClientesPendientes();
         clientesRecibidos = new ClientesRecibidos();
+        listaUsuarios = new ListaUsuarios();
+    }
+
+    public void inicioSesion(){
+        listaUsuarios.cargarUsuariosRegistrados();
+
+        Scanner input = new Scanner(System.in);
+        String nombre;
+        String passwd;
+
+        System.out.println("Nombre de usuario: ");
+        nombre = input.next();
+
+        System.out.println("Contraseña usuario: ");
+        passwd = input.next();
+
+        usuario = new Usuario(nombre,passwd);
+
+        try {
+            usuarioFinal = listaUsuarios.contiene(usuario);
+            if (usuarioFinal!=null){
+                System.out.println("Bienvenido " + usuarioFinal.getNombre());
+                run();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("El usuario no existe.");
+        }
     }
 
     /**
@@ -146,6 +177,7 @@ public class GestorApp {
         Scanner input = new Scanner(System.in);
         int option;
 
+        System.out.println("Usuario: " + usuarioFinal.getNombre());
         System.out.println("**********************************");
         System.out.println("* 1. Registrar cliente (persona) *");
         System.out.println("* 2. Registrar cliente (empresa) *");

@@ -30,9 +30,9 @@ public class ClientesRecibidos {
         }
 
         if (cliente != null){
+            System.out.println("Un cliente ya ha recibido su Thermomix.");
             clientesRecibidos.add(cliente);
             guardarClientesRecibidos();
-            System.out.println("Un cliente ya ha recibido su Thermomix.");
         }
     }
 

@@ -46,23 +46,6 @@ public class ListaUsuarios {
     }
 
     /**
-     * Devuelve el tamaño de la lista
-     * @return longitud de clientes
-     */
-    public int longitud(){
-        return usuariosRegistrados.size();
-    }
-
-    /**
-     * Ordena los clientes por nombres y los muestra
-     */
-    public void mostrarUsuarios(){
-        for (Usuario usuario: usuariosRegistrados){
-            System.out.println(usuario);
-        }
-    }
-
-    /**
      * Escribirá la lista actual de clientes en info/clientesRecibidos.dat
      */
     public void guardarUsuariosRegistrados() {

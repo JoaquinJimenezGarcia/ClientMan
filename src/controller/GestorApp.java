@@ -1,10 +1,8 @@
 package controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.*;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 /**

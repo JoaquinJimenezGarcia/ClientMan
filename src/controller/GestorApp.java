@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.*;
 
 import java.util.InputMismatchException;
@@ -149,6 +150,13 @@ public class GestorApp {
                         }
                     }
                     break;
+                case 11:
+                    if (usuarioFinal.isEscribir()){
+                        listaUsuarios.registrarUsuario(leerUsuario());
+                    } else {
+                        System.out.println("No tienes permisos de escritura");
+                    }
+                    break;
                 default:
                     break;
             }
@@ -158,6 +166,50 @@ public class GestorApp {
         gestor.guardarClientesRegistrados();
         clientesRecibidos.guardarClientesRecibidos();
         clientesPendientes.guardarClientesPendientes();
+    }
+
+    public Usuario leerUsuario(){
+        Scanner input = new Scanner(System.in);
+        Usuario nuevoUsuario;
+        String nombre;
+        String pass;
+        Boolean leer;
+        Boolean escribir;
+        String respuesta;
+
+        System.out.println("Introduzca nombre de usuario: ");
+        nombre = input.next();
+
+        System.out.println("Introduzca contraseña de usuario: ");
+        pass = input.next();
+
+        do {
+            System.out.println("Tendra permisos de lectura? ");
+            respuesta = input.next();
+
+            if (respuesta.equals("si")){
+                leer = true;
+            } else {
+                leer = false;
+            }
+        }while (!respuesta.equals("si")&&!respuesta.equals("no"));
+
+        respuesta = "";
+
+        do {
+            System.out.println("Tendra permisos de escritura? ");
+            respuesta = input.next();
+
+            if (respuesta.equals("si")){
+                escribir = true;
+            } else {
+                escribir = false;
+            }
+        }while (!respuesta.equals("si")&&!respuesta.equals("no"));
+
+        nuevoUsuario = new Usuario(escribir, leer, nombre, pass);
+
+        return nuevoUsuario;
     }
 
     /**
@@ -227,6 +279,7 @@ public class GestorApp {
         if (clientesRecibidos.longitud()>0){
             System.out.println("* 9. Transaciones Terminadas     *");
         }
+        System.out.println("* 11. Registrar usuario          *");
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");
 

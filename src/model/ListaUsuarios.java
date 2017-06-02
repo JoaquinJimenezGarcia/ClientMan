@@ -31,7 +31,7 @@ public class ListaUsuarios {
         if (usuario != null){
             usuariosRegistrados.add(usuario);
             guardarUsuariosRegistrados();
-            System.out.println("Un cliente ya ha recibido su Thermomix.");
+            System.out.println("Usuario registrado con éxito.");
         }
     }
 

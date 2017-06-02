@@ -86,7 +86,6 @@ public class Usuario implements Serializable{
         // Field comparaison
         Usuario user = (Usuario) obj;
         return
-                Objects.equals(this.nombre, user.nombre)&&
-                        Objects.equals(this.passwd, user.passwd);
+                Objects.equals(this.nombre, user.nombre);
     }
 }

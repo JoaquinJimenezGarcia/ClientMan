@@ -1,5 +1,7 @@
 package model;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import java.sql.*;
 
 /**
@@ -82,10 +84,12 @@ public class ConexionBBDD {
             usuarioNuevo.executeUpdate();
 
             conexion.commit();
-        }catch(SQLException e){
-            e.printStackTrace();
+        }catch(MySQLIntegrityConstraintViolationException e) {
             conexion.rollback();
-            System.out.println("Error en añadir.");
+            System.out.println("El usuario ya existe.");
+        } catch (SQLException p) {
+            conexion.rollback();
+            System.out.println("Ha habido un error con la conexion");
         }finally{
             if (usuarioNuevo != null){
                 usuarioNuevo.close();

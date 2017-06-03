@@ -43,14 +43,18 @@ public class GestorApp {
 
         conexionBBDD.conectar();
 
-        if (conexionBBDD.consultaUsuario(nombre,passwd)){
-            usuarioFinal = new Usuario(conexionBBDD.getEscritura(), conexionBBDD.getLectura(), conexionBBDD.getNombre(),conexionBBDD.getPass());
-            conexionBBDD.cerrar();
-        }
+        try {
+            if (conexionBBDD.consultaUsuario(nombre, passwd)) {
+                usuarioFinal = new Usuario(conexionBBDD.getEscritura(), conexionBBDD.getLectura(), conexionBBDD.getNombre(), conexionBBDD.getPass());
+                conexionBBDD.cerrar();
+            }
 
-        if (usuarioFinal != null){
-            System.out.println("Bienvenido " + usuarioFinal);
-            run();
+            if (usuarioFinal != null) {
+                System.out.println("Bienvenido " + usuarioFinal);
+                run();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("El usuario no existe.");
         }
     }
 
@@ -148,7 +152,13 @@ public class GestorApp {
                     break;
                 case 11:
                     if (usuarioFinal.isEscribir()){
-                        System.out.println("Opcion deshabilitada temporalmente.");//listaUsuarios.registrarUsuario(leerUsuario());
+                        conexionBBDD = new ConexionBBDD();
+                        try{
+                            conexionBBDD.conectar();
+                            conexionBBDD.registrarUsuario(leerUsuario());
+                        } catch (SQLException e){
+                            System.out.println("Ha habido un problema reestableciendo su conexión.");
+                        }
                     } else {
                         System.out.println("No tienes permisos de escritura");
                     }

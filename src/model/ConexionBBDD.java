@@ -68,6 +68,31 @@ public class ConexionBBDD {
         }
     }
 
+    public void registrarUsuario(Usuario usuario) throws SQLException{
+        final String USUARIO = "Insert into usuario(nombre, pass, lectura, escritura) values(?, ?, ?, ?)";
+        PreparedStatement usuarioNuevo = null;
+
+        try{
+            usuarioNuevo = conexion.prepareStatement(USUARIO);
+            usuarioNuevo.setString(1, usuario.getNombre());
+            usuarioNuevo.setString(2, usuario.getPasswd());
+            usuarioNuevo.setBoolean(3, usuario.isLeer());
+            usuarioNuevo.setBoolean(4, usuario.isEscribir());
+
+            usuarioNuevo.executeUpdate();
+
+            conexion.commit();
+        }catch(SQLException e){
+            e.printStackTrace();
+            conexion.rollback();
+            System.out.println("Error en añadir.");
+        }finally{
+            if (usuarioNuevo != null){
+                usuarioNuevo.close();
+            }
+        }
+    }
+
     public boolean consultaUsuario(String nombre, String password) throws SQLException {
         String query = "select nombre, pass, lectura, escritura from usuario where nombre = ? && pass = ? ";
         PreparedStatement statement = conexion.prepareStatement(query);

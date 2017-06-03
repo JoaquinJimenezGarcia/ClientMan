@@ -1,6 +1,7 @@
-package model;
+package controller;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import model.Usuario;
 
 import java.sql.*;
 

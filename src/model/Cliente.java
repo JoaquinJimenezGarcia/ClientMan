@@ -16,6 +16,7 @@ public abstract class Cliente implements Serializable{
     private Date fechaRecesion;
     private Date fechaVenta;
     private String emailContacto;
+    private String clienteVendido;
 
     /**
      * Constructor por defecto.
@@ -45,6 +46,10 @@ public abstract class Cliente implements Serializable{
         this.date = new Date();
         this.setDni_nif(dni_nif);
         this.setEmailContacto(emailContacto);
+    }
+
+    public void setClienteVendido(String clienteVendido) {
+        this.clienteVendido = clienteVendido;
     }
 
     public String getEmailContacto() {
@@ -137,6 +142,7 @@ public abstract class Cliente implements Serializable{
                     ", Fecha de Registro = " + date +
                     ", DNI/NIF = " + dni_nif +
                     ", Vendido en = " + fechaVenta +
+                    " por: " + clienteVendido +
                     ", Llegada = " + fechaRecesion +
                     " )";
         } else {

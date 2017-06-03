@@ -85,6 +85,8 @@ public class ConexionBBDD {
             usuarioNuevo.executeUpdate();
 
             conexion.commit();
+
+            System.out.println("Usuario "+ usuario.getNombre() + " registrado con éxito");
         }catch(MySQLIntegrityConstraintViolationException e) {
             conexion.rollback();
             System.out.println("El usuario ya existe.");

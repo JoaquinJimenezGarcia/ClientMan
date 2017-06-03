@@ -50,11 +50,11 @@ public class GestorApp {
             }
 
             if (usuarioFinal != null) {
-                System.out.println("Bienvenido " + usuarioFinal);
+                System.out.println("Bienvenido " + usuarioFinal.getNombre());
                 run();
             }
         } catch (NullPointerException e) {
-            System.out.println("El usuario no existe.");
+            System.out.println("El usuario no existe o ha introducido una contraseña incorrecta.");
         }
     }
 

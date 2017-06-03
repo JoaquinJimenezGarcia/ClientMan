@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,9 +17,8 @@ public class GestorApp {
     Gestor gestor;
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;
-    ListaUsuarios listaUsuarios;
-    Usuario usuario;
     Usuario usuarioFinal;
+    ConexionBBDD conexionBBDD;
 
     /**
      * Constructor para instanciar automáticamente las listas
@@ -27,12 +27,10 @@ public class GestorApp {
         gestor = new Gestor();
         clientesPendientes = new ClientesPendientes();
         clientesRecibidos = new ClientesRecibidos();
-        listaUsuarios = new ListaUsuarios();
+        conexionBBDD = new ConexionBBDD();
     }
 
-    public void inicioSesion(){
-        listaUsuarios.cargarUsuariosRegistrados();
-
+    public void inicioSesion() throws SQLException{
         Scanner input = new Scanner(System.in);
         String nombre;
         String passwd;
@@ -43,16 +41,16 @@ public class GestorApp {
         System.out.println("Contraseña usuario: ");
         passwd = input.next();
 
-        usuario = new Usuario(nombre,passwd);
+        conexionBBDD.conectar();
 
-        try {
-            usuarioFinal = listaUsuarios.contiene(usuario);
-            if (usuarioFinal!=null){
-                System.out.println("Bienvenido " + usuarioFinal.getNombre());
-                run();
-            }
-        } catch (NullPointerException e) {
-            System.out.println("El usuario no existe.");
+        if (conexionBBDD.consultaUsuario(nombre,passwd)){
+            usuarioFinal = new Usuario(conexionBBDD.getEscritura(), conexionBBDD.getLectura(), conexionBBDD.getNombre(),conexionBBDD.getPass());
+            conexionBBDD.cerrar();
+        }
+
+        if (usuarioFinal != null){
+            System.out.println("Bienvenido " + usuarioFinal);
+            run();
         }
     }
 
@@ -150,7 +148,7 @@ public class GestorApp {
                     break;
                 case 11:
                     if (usuarioFinal.isEscribir()){
-                        listaUsuarios.registrarUsuario(leerUsuario());
+                        System.out.println("Opcion deshabilitada temporalmente.");//listaUsuarios.registrarUsuario(leerUsuario());
                     } else {
                         System.out.println("No tienes permisos de escritura");
                     }

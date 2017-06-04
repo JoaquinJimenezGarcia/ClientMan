@@ -1,4 +1,4 @@
-# [ClientMan](jojigarcia.me/ClientMan/HTML)
+# [ClientMan](http://jojigarcia.me/ClientMan/HTML)
 Gestor de clientes escrita en Java para escritorio. Edición especial Thermomix.
 
 ## Cómo funciona.
@@ -32,4 +32,4 @@ Habiendo establecido la conexión con el servidor de ClientMan, te permite regis
 ## Envio de emails al correo de clientes.
 Antes de hacer uso de esta funcionalidad, tiene que escribir en el código la cuenta de email desde la que quiere mandar los correos (el que aparecerá como remitente) y la clave que le proporcionará su cliente de mensajería para utilizarlo en aplicaciones de terceros. Para las pruebas, se usó Gmail. 
 
-### Powered by [Joaquín Jiménez García](jojigarcia.me)
+### Powered by [Joaquín Jiménez García](http://jojigarcia.me)

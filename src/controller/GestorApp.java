@@ -18,7 +18,8 @@ public class GestorApp {
     ClientesPendientes clientesPendientes;
     ClientesRecibidos clientesRecibidos;
     Usuario usuarioFinal;
-    ConexionBBDD conexionBBDD;
+    Usuario usuario;
+    ListaUsuarios listaUsuarios;
 
     /**
      * Constructor para instanciar automáticamente las listas
@@ -27,14 +28,15 @@ public class GestorApp {
         gestor = new Gestor();
         clientesPendientes = new ClientesPendientes();
         clientesRecibidos = new ClientesRecibidos();
-        conexionBBDD = new ConexionBBDD();
+        listaUsuarios = new ListaUsuarios();
     }
 
     /**
      * Método para iniciar sesión con un usuario registrado en la base de datos local
      * @throws SQLException
      */
-    public void inicioSesion() throws SQLException{
+    public void inicioSesion() throws SQLException {
+        listaUsuarios.cargarUsuariosRegistrados();
         Scanner input = new Scanner(System.in);
         String nombre;
         String passwd;
@@ -45,25 +47,16 @@ public class GestorApp {
         System.out.println("Contraseña usuario: ");
         passwd = input.next();
 
-        conexionBBDD.conectar(); // Conecta con la base de datos
+        usuario = new Usuario(nombre, passwd);
 
         try {
-            // Compueba si el usuario dado está en la base de datos
-            if (conexionBBDD.consultaUsuario(nombre, passwd)) {
-                // Si está, lo devuelve
-                usuarioFinal = new Usuario(conexionBBDD.getEscritura(), conexionBBDD.getLectura(), conexionBBDD.getNombre(), conexionBBDD.getPass());
-                // Y luego cierra la conexión
-                conexionBBDD.cerrar();
-            }
-
-            // Si ha ido bien, dará la bienvenida al usuario y correrá la aplicación
+            usuarioFinal = listaUsuarios.contiene(usuario);
             if (usuarioFinal != null) {
-                System.out.println("Bienvenido " + usuarioFinal.getNombre());
+                System.out.println("Bienvenido " + usuarioFinal);
                 run();
             }
         } catch (NullPointerException e) {
-            // En caso de error avisa y cierra
-            System.out.println("El usuario no existe o ha introducido una contraseña incorrecta.");
+            System.out.println("El usuario no existe.");
         }
     }
 
@@ -163,19 +156,13 @@ public class GestorApp {
                     break;
                 case 11:
                     if (usuarioFinal.isEscribir()){
-                        conexionBBDD = new ConexionBBDD();
-                        try{
-                            conexionBBDD.conectar();
-                            conexionBBDD.registrarUsuario(leerUsuario());
-                        } catch (SQLException e){
-                            System.out.println("Ha habido un problema reestableciendo su conexión.");
-                        }
+                        listaUsuarios.registrarUsuario(leerUsuario());
                     } else {
                         System.out.println("No tienes permisos de escritura");
                     }
                     break;
                 case 12:
-                    if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
+                    if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0&&usuarioFinal.isLeer()) {
                         modificarClienteUsuario();
                     }
                     break;

@@ -163,6 +163,12 @@ public class GestorApp {
                         System.out.println("No tienes permisos de escritura");
                     }
                     break;
+                case 12:
+                    modificarClienteUsuario();
+                    break;
+                case 13:
+                    modificarClienteEmpresa();
+                    break;
                 default:
                     break;
             }
@@ -287,6 +293,8 @@ public class GestorApp {
             System.out.println("* 9. Transaciones Terminadas     *");
         }
         System.out.println("* 11. Registrar usuario          *");
+        System.out.println("* 12. Modificar Cliente (Persona)*");
+        System.out.println("* 13. Modificar Cliente (Empresa)*");
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");
 
@@ -453,6 +461,79 @@ public class GestorApp {
         cliente = new Persona(direccionFacturacion, telfContacto, dni, emailContacto, nombre, apellidos, telf);
 
         return cliente;
+    }
+
+    public void modificarClienteEmpresa(){
+        Scanner input = new Scanner (System.in);
+        String nombre;
+        String emailContacto;
+        String direccionFacturacion;
+        int telfContacto;
+        Cliente empresaModificada = gestor.transicionCliente(leerIdentificador());
+
+        if (empresaModificada!=null) {
+            do {
+                System.out.println("Nombre Empresa: ");
+                nombre = input.nextLine();
+            } while (nombre.equals("") || nombre.length() < 5);
+
+            do {
+                System.out.println("Dirección de Facturación: ");
+                direccionFacturacion = input.nextLine();
+            } while (direccionFacturacion.equals(""));
+
+            do {
+                System.out.println("Email de Contacto: ");
+                emailContacto = input.nextLine();
+            } while (emailContacto.equals(""));
+
+            do {
+                System.out.println("Télefono Contacto: ");
+                telfContacto = numeroTelf();
+            } while (telfContacto < 600000000 || telfContacto > 799999999);
+
+            empresaModificada.setNombre(nombre);
+            empresaModificada.setEmailContacto(emailContacto);
+            empresaModificada.setTelfContacto(telfContacto);
+            empresaModificada.setDireccionFacturacion(direccionFacturacion);
+        } else {
+            System.out.println("El cliente que desea modificar no existe.");
+        }
+    }
+
+    public void modificarClienteUsuario(){
+        Scanner input = new Scanner (System.in);
+        String nombre;
+        String emailContacto;
+        String direccionFacturacion;
+        int telfContacto;
+        Cliente clienteModificado = gestor.transicionCliente(leerIdentificador());
+
+        if (clienteModificado!=null) {
+            do {
+                System.out.println("Nombre Cliente: ");
+                nombre = input.nextLine();
+            } while (nombre.equals("") || nombre.length() < 3);
+
+            emailContacto = correo();
+
+            do {
+                System.out.println("Dirección de Facturación: ");
+                direccionFacturacion = input.nextLine();
+            } while (direccionFacturacion.equals(""));
+
+            do {
+                System.out.println("Télefono Contacto: ");
+                telfContacto = numeroTelf();
+            } while (telfContacto < 600000000 || telfContacto > 799999999);
+
+            clienteModificado.setNombre(nombre);
+            clienteModificado.setEmailContacto(emailContacto);
+            clienteModificado.setDireccionFacturacion(direccionFacturacion);
+            clienteModificado.setTelfContacto(telfContacto);
+        } else {
+            System.out.println("El cliente que quiere modificar no existe.");
+        }
     }
 
     /**

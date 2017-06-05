@@ -36,16 +36,29 @@ public class ClientesRecibidos {
         }
     }
 
+    /**
+     * Devulve un cliente dado un índice para buscarlo en la lista
+     * @param indice
+     * @return
+     */
     public Cliente devolverCliente(int indice){
         Cliente cliente = clientesRecibidos.get(indice);
 
         return cliente;
     }
 
+    /**
+     * Borra el cliente en el índice dado
+     * @param indice
+     */
     public void eliminarCliente(int indice){
         clientesRecibidos.remove(indice);
     }
 
+    /**
+     * Borra el cliente del identificador pasado
+     * @param identificador
+     */
     public void eliminarCliente(String identificador){
         String comprobador = null;
         Iterator<Cliente> itCliente = clientesRecibidos.iterator();

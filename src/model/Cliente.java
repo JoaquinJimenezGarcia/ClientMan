@@ -134,6 +134,12 @@ public abstract class Cliente implements Serializable{
         }
     }
 
+    /**
+     * El toString devolverá diferentes datos dependiendo de si el cliente
+     * ha hecho una compra o no.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         if (this.isVendido()) {

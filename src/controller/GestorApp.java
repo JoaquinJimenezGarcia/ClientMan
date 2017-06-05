@@ -30,6 +30,10 @@ public class GestorApp {
         conexionBBDD = new ConexionBBDD();
     }
 
+    /**
+     * Método para iniciar sesión con un usuario registrado en la base de datos local
+     * @throws SQLException
+     */
     public void inicioSesion() throws SQLException{
         Scanner input = new Scanner(System.in);
         String nombre;
@@ -41,19 +45,24 @@ public class GestorApp {
         System.out.println("Contraseña usuario: ");
         passwd = input.next();
 
-        conexionBBDD.conectar();
+        conexionBBDD.conectar(); // Conecta con la base de datos
 
         try {
+            // Compueba si el usuario dado está en la base de datos
             if (conexionBBDD.consultaUsuario(nombre, passwd)) {
+                // Si está, lo devuelve
                 usuarioFinal = new Usuario(conexionBBDD.getEscritura(), conexionBBDD.getLectura(), conexionBBDD.getNombre(), conexionBBDD.getPass());
+                // Y luego cierra la conexión
                 conexionBBDD.cerrar();
             }
 
+            // Si ha ido bien, dará la bienvenida al usuario y correrá la aplicación
             if (usuarioFinal != null) {
                 System.out.println("Bienvenido " + usuarioFinal.getNombre());
                 run();
             }
         } catch (NullPointerException e) {
+            // En caso de error avisa y cierra
             System.out.println("El usuario no existe o ha introducido una contraseña incorrecta.");
         }
     }
@@ -170,22 +179,21 @@ public class GestorApp {
                         modificarClienteUsuario();
                     }
                     break;
-                case 13:
-                    if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
-                        modificarClienteEmpresa();
-                    }
-                    break;
                 default:
                     break;
             }
         }
 
-        // Al salir d ela aplicación guarda todos los datos para su posterior uso.
+        // Al salir de la aplicación guarda todos los datos para su posterior uso.
         gestor.guardarClientesRegistrados();
         clientesRecibidos.guardarClientesRecibidos();
         clientesPendientes.guardarClientesPendientes();
     }
 
+    /**
+     * Leerá un usuario para entregarlo a la base de datos y ver si existe.
+     * @return usuario completo
+     */
     public Usuario leerUsuario(){
         Scanner input = new Scanner(System.in);
         Usuario nuevoUsuario;
@@ -300,8 +308,7 @@ public class GestorApp {
         }
         System.out.println("* 11. Registrar usuario          *");
         if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
-            System.out.println("* 12. Modificar Cliente (Persona)*");
-            System.out.println("* 13. Modificar Cliente (Empresa)*");
+            System.out.println("* 12. Modificar Cliente          *");
         }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");
@@ -471,44 +478,12 @@ public class GestorApp {
         return cliente;
     }
 
-    public void modificarClienteEmpresa(){
-        Scanner input = new Scanner (System.in);
-        String nombre;
-        String emailContacto;
-        String direccionFacturacion;
-        int telfContacto;
-        Cliente empresaModificada = gestor.transicionCliente(leerIdentificador());
-
-        if (empresaModificada!=null) {
-            do {
-                System.out.println("Nombre Empresa: ");
-                nombre = input.nextLine();
-            } while (nombre.equals("") || nombre.length() < 5);
-
-            do {
-                System.out.println("Dirección de Facturación: ");
-                direccionFacturacion = input.nextLine();
-            } while (direccionFacturacion.equals(""));
-
-            do {
-                System.out.println("Email de Contacto: ");
-                emailContacto = input.nextLine();
-            } while (emailContacto.equals(""));
-
-            do {
-                System.out.println("Télefono Contacto: ");
-                telfContacto = numeroTelf();
-            } while (telfContacto < 600000000 || telfContacto > 799999999);
-
-            empresaModificada.setNombre(nombre);
-            empresaModificada.setEmailContacto(emailContacto);
-            empresaModificada.setTelfContacto(telfContacto);
-            empresaModificada.setDireccionFacturacion(direccionFacturacion);
-        } else {
-            System.out.println("El cliente que desea modificar no existe.");
-        }
-    }
-
+    /**
+     * Modifica un cliente ya existente asignándole unos valores nuevos.
+     *
+     * En caso de que dicho cliente existiera también en alguna otra lista,
+     * también los modifica ahí.
+     */
     public void modificarClienteUsuario(){
         Scanner input = new Scanner (System.in);
         String nombre;

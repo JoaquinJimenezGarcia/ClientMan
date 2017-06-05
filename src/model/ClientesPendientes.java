@@ -30,12 +30,21 @@ public class ClientesPendientes {
         }
     }
 
+    /**
+     * Devuelve un cliente concreto dado un índice
+     * @param indice
+     * @return
+     */
     public Cliente devolverCliente(int indice){
         Cliente cliente = clientesPendientes.get(indice);
 
         return cliente;
     }
 
+    /**
+     * Elimina un cliente concreto dado un índice
+     * @param indice
+     */
     public void eliminarCliente(int indice){
         clientesPendientes.remove(indice);
     }

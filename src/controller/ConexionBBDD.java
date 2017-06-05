@@ -6,6 +6,9 @@ import model.Usuario;
 import java.sql.*;
 
 /**
+ * Clase que establecerá una conexión con una base de datos para
+ * llevar a cabo las tareas de usuario.
+ *
  * Created by joaquinjimenezgarcia on 03/06/2017.
  */
 public class ConexionBBDD {
@@ -56,21 +59,36 @@ public class ConexionBBDD {
         this.escritura = escritura;
     }
 
+    /**
+     * Establecerá la conexión con el servidor
+     * @throws SQLException si no se consigue conectar
+     */
     public void conectar() throws SQLException{
         String jdbc = "jdbc:mysql://localhost:3306/usuarios";
-        String user = "root";
-        String passwd = "undertaker97";
+        String user = "root"; //Usuario de la base de datos
+        String passwd = "undertaker97"; //Contraseña de la base de datos
 
         conexion = DriverManager.getConnection(jdbc,user,passwd);
         conexion.setAutoCommit(false);
     }
 
+    /**
+     * Cierra la conexión con la base de datos.
+     * @throws SQLException
+     */
     public void cerrar() throws SQLException{
         if (conexion != null){
             conexion.close();
         }
     }
 
+    /**
+     * Dado un usuario, lo registrará en la base de datos para poder
+     * acceder a la aplicación con dicho usuario con los permisos asignados
+     *
+     * @param usuario
+     * @throws SQLException
+     */
     public void registrarUsuario(Usuario usuario) throws SQLException{
         final String USUARIO = "Insert into usuario(nombre, pass, lectura, escritura) values(?, ?, ?, ?)";
         PreparedStatement usuarioNuevo = null;
@@ -100,6 +118,14 @@ public class ConexionBBDD {
         }
     }
 
+    /**
+     * Método que comprobará si un usuario existe o no en la base de datos.
+     *
+     * @param nombre
+     * @param password
+     * @return true si está o false si no
+     * @throws SQLException
+     */
     public boolean consultaUsuario(String nombre, String password) throws SQLException {
         String query = "select nombre, pass, lectura, escritura from usuario where nombre = ? && pass = ? ";
         PreparedStatement statement = conexion.prepareStatement(query);

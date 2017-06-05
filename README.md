@@ -13,9 +13,9 @@ Permite registrar una empresa como cliente con todos sus datos y los de una pers
 ### Opción 3: 
 Lista todos los clientes, tanto personas como empresas, registrados en el gestor, ordenados alfabéticamente por el nombre.
 ### Opción 4: 
-Permite borrar un cliente del gestor (si se ha vendido, sus datos se mantendrán entre los clientes a los que se les ha vendido una máquina para futuras referencias y compras, solo se borra de la lista actual de clientes).
+Permite borrar un cliente del gestor y de las listas a las que pertenezca
 ### Opción 5:
-Seleccionando un cliente, lleva a cabo una venta de una Thermomix a dicho cliente (ya sea persona o empresa), enviando un email a su correo electrónico avisando de que se ha completado la compra existosamente. Así mismo, copia los datos de dicho cliente a una lista nueva dónde apareceran todos los clientes que están esperando recibir su producto.
+Seleccionando un cliente, lleva a cabo una venta de una Thermomix a dicho cliente (ya sea persona o empresa). Así mismo, copia los datos de dicho cliente a una lista nueva dónde apareceran todos los clientes que están esperando recibir su producto.
 ### Opción 6:
 Establece una búsqueda de todos los clientes por nombre (ya sea de la persona en concreto o de la empresa). Opción ideal cuando buscamos el teléfono, correo, o DNI/NIF de algún cliente.
 ### Opción 7:
@@ -27,9 +27,7 @@ Lista alfabéticamente todos los clientes que recibieron su máquina, indicando 
 ### Opción 10: 
 Establece una búsqueda de todos los clientes por DNI/NIF (ya sea de la persona en concreto o de la empresa). Opción ideal cuando buscamos el teléfono, correo, o nombre de algún cliente.
 ### Opción 11:
-Habiendo establecido la conexión con el servidor de ClientMan, te permite registrar nuevos usuarios en caso de que la aplicación sea compartida y se quieran diferenciar las ventas. 
-
-## Envio de emails al correo de clientes.
-Antes de hacer uso de esta funcionalidad, tiene que escribir en el código la cuenta de email desde la que quiere mandar los correos (el que aparecerá como remitente) y la clave que le proporcionará su cliente de mensajería para utilizarlo en aplicaciones de terceros. Para las pruebas, se usó Gmail. 
-
+Te permite registrar nuevos usuarios en caso de que la aplicación sea compartida y se quieran diferenciar las ventas. 
+### Opción 12:
+Permite modificar cualquier cliente que se haya registrado y actualizarlo en todas las listas en las que se encuentre este.
 ### Powered by [Joaquín Jiménez García](http://jojigarcia.me)

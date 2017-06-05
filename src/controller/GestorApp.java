@@ -52,7 +52,7 @@ public class GestorApp {
         try {
             usuarioFinal = listaUsuarios.contiene(usuario);
             if (usuarioFinal != null) {
-                System.out.println("Bienvenido " + usuarioFinal);
+                System.out.println("Bienvenido " + usuarioFinal.getNombre() + "!!");
                 run();
             }
         } catch (NullPointerException e) {

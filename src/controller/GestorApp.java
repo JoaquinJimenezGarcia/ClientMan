@@ -103,6 +103,7 @@ public class GestorApp {
                             String identificador = leerIdentificador();
                             gestor.borrarCliente(identificador);
                             clientesRecibidos.eliminarCliente(identificador);
+                            System.out.println("Cliente borrado con éxito");
                         } else {
                             System.out.println("No tienes permisos para borrar un cliente.");
                         }
@@ -163,7 +164,7 @@ public class GestorApp {
                     break;
                 case 12:
                     if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0&&usuarioFinal.isLeer()) {
-                        modificarClienteUsuario();
+                        modificarCliente();
                     }
                     break;
                 default:
@@ -471,7 +472,7 @@ public class GestorApp {
      * En caso de que dicho cliente existiera también en alguna otra lista,
      * también los modifica ahí.
      */
-    public void modificarClienteUsuario(){
+    public void modificarCliente(){
         Scanner input = new Scanner (System.in);
         String nombre;
         String emailContacto;
@@ -481,19 +482,19 @@ public class GestorApp {
 
         if (clienteModificado!=null) {
             do {
-                System.out.println("Nombre Cliente: ");
+                System.out.println("Nuevo nombre: ");
                 nombre = input.nextLine();
             } while (nombre.equals("") || nombre.length() < 3);
 
             emailContacto = correo();
 
             do {
-                System.out.println("Dirección de Facturación: ");
+                System.out.println("Nueva dirección facturación: ");
                 direccionFacturacion = input.nextLine();
             } while (direccionFacturacion.equals(""));
 
             do {
-                System.out.println("Télefono Contacto: ");
+                System.out.println("Nuevo teléfono de contacto: ");
                 telfContacto = numeroTelf();
             } while (telfContacto < 600000000 || telfContacto > 799999999);
 
@@ -503,16 +504,18 @@ public class GestorApp {
             clienteModificado.setTelfContacto(telfContacto);
 
             for (int i = 0; i < clientesPendientes.longitud() ; i++) {
-                if (clientesPendientes.devolverCliente(i) == clienteModificado ){
+                if (clientesPendientes.devolverCliente(i).equals(clienteModificado) ){
                     clientesPendientes.eliminarCliente(i);
                     clientesPendientes.registarCliente(clienteModificado);
                 }
             }
 
             for (int i = 0; i < clientesRecibidos.longitud(); i++) {
-                if (clientesRecibidos.devolverCliente(i) == clienteModificado){
-                    clientesRecibidos.eliminarCliente(i);
-                    clientesRecibidos.registarCliente(clienteModificado);
+                if (clientesRecibidos.devolverCliente(i).equals(clienteModificado)){
+                    clientesRecibidos.devolverCliente(i).setNombre(nombre);
+                    clientesRecibidos.devolverCliente(i).setEmailContacto(emailContacto);
+                    clientesRecibidos.devolverCliente(i).setDireccionFacturacion(direccionFacturacion);
+                    clientesRecibidos.devolverCliente(i).setTelfContacto(telfContacto);
                 }
             }
 

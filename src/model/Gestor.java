@@ -75,7 +75,6 @@ public class Gestor {
 
             if (cliente.getDni_nif().equals(identificador)) {
                 itCliente.remove();
-                System.out.println("Cliente borrado con éxito.");
                 comprobador = "";
                 guardarClientesRegistrados();
             }

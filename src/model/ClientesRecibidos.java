@@ -48,14 +48,6 @@ public class ClientesRecibidos {
     }
 
     /**
-     * Borra el cliente en el índice dado
-     * @param indice
-     */
-    public void eliminarCliente(int indice){
-        clientesRecibidos.remove(indice);
-    }
-
-    /**
      * Borra el cliente del identificador pasado
      * @param identificador
      */
@@ -67,7 +59,6 @@ public class ClientesRecibidos {
 
             if (cliente.getDni_nif().equals(identificador)) {
                 itCliente.remove();
-                System.out.println("Cliente borrado con éxito.");
                 comprobador = "";
                 guardarClientesRecibidos();
             }

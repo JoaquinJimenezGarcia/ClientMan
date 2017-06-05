@@ -258,7 +258,6 @@ public class GestorApp {
 
         try{
             if (!clientesPendientes.existencia(cliente)){ // Comprueba que no existe ya
-                gestor.enviarCorreo(cliente); // Manda email avisando de su compra
                 cliente.setClienteVendido(usuarioFinal.getNombre());
                 clientesPendientes.registarCliente(cliente); // Lo registra en Clientes pendientes
             }

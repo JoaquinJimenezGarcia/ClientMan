@@ -1,9 +1,7 @@
 package model;
 
-import controller.EnvioCorreo;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -147,34 +145,6 @@ public class Gestor {
             }
         }
         return cliente;
-    }
-
-    /**
-     * Método para enviar un mensaje a un cliente dado como parámerto.
-     * Avisando de que se le vendió una máquina.
-     *
-     * En caso de no haber mandado el correo, avisará.
-     * @param cliente
-     */
-    public void enviarCorreo(Cliente cliente){
-        Correo c = new Correo();
-        EnvioCorreo controlador = new EnvioCorreo();
-
-        c.setPasswd("PASSWD");
-        c.setUsuarioCorreo("CORREO");
-        c.setAsunto("Thermomix Vendida");
-        c.setDestino(cliente.getEmailContacto());
-        c.setMsg("Este mensaje se ha generado automáticamente para " +
-                "avisarle de que su nueva Thermomix ya se encuentra en trámites" +
-                "y será entregada en su domicilio indicado tan pronto como" +
-                "sea posible. " +
-                "Esperamos que la disfrute.");
-
-        if (controlador.enviarCorreo(c)){
-            System.out.println("Enviado correo de venta");
-        }else{
-            System.out.println("No se ha podido enviar el correo de venta.");
-        }
     }
 
     /**

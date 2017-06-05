@@ -1,4 +1,4 @@
-# [ClientMan](http://jojigarcia.me/ClientMan/HTML)
+# [ClientMan](http://jojigarcia.me/ClientManWeb/)
 Gestor de clientes escrita en Java para escritorio. Edición especial Thermomix.
 
 ## Cómo funciona.

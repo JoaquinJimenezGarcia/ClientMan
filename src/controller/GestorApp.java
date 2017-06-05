@@ -98,7 +98,9 @@ public class GestorApp {
                 case 4:
                     if (gestor.longitud()>0){
                         if (usuarioFinal.isEscribir()) {
-                            gestor.borrarCliente(leerIdentificador());
+                            String identificador = leerIdentificador();
+                            gestor.borrarCliente(identificador);
+                            clientesRecibidos.eliminarCliente(identificador);
                         } else {
                             System.out.println("No tienes permisos para borrar un cliente.");
                         }

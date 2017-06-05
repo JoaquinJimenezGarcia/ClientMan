@@ -46,6 +46,24 @@ public class ClientesRecibidos {
         clientesRecibidos.remove(indice);
     }
 
+    public void eliminarCliente(String identificador){
+        String comprobador = null;
+        Iterator<Cliente> itCliente = clientesRecibidos.iterator();
+        while (itCliente.hasNext()) {
+            Cliente cliente = itCliente.next();
+
+            if (cliente.getDni_nif().equals(identificador)) {
+                itCliente.remove();
+                System.out.println("Cliente borrado con éxito.");
+                comprobador = "";
+                guardarClientesRecibidos();
+            }
+        }
+        if (comprobador == null){
+            System.out.println("El Cliente no existe.");
+        }
+    }
+
 
     /**
      * Devuelve el tamaño de la lista

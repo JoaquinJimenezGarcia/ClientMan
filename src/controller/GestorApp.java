@@ -166,10 +166,14 @@ public class GestorApp {
                     }
                     break;
                 case 12:
-                    modificarClienteUsuario();
+                    if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
+                        modificarClienteUsuario();
+                    }
                     break;
                 case 13:
-                    modificarClienteEmpresa();
+                    if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
+                        modificarClienteEmpresa();
+                    }
                     break;
                 default:
                     break;
@@ -295,8 +299,10 @@ public class GestorApp {
             System.out.println("* 9. Transaciones Terminadas     *");
         }
         System.out.println("* 11. Registrar usuario          *");
-        System.out.println("* 12. Modificar Cliente (Persona)*");
-        System.out.println("* 13. Modificar Cliente (Empresa)*");
+        if (clientesRecibidos.longitud()>0||gestor.longitud()>0||clientesPendientes.longitud()>0) {
+            System.out.println("* 12. Modificar Cliente (Persona)*");
+            System.out.println("* 13. Modificar Cliente (Empresa)*");
+        }
         System.out.println("* 0. Salir                       *");
         System.out.println("**********************************");
 

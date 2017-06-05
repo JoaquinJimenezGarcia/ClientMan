@@ -138,9 +138,7 @@ public class ClientesPendientes {
 
             ois.close();
         } catch (IOException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException e){
-
         }
     }
 }

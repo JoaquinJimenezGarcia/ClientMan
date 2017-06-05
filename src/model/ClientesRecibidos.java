@@ -110,7 +110,6 @@ public class ClientesRecibidos {
 
             ois.close();
         } catch (IOException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException e){
 
         }

@@ -531,6 +531,21 @@ public class GestorApp {
             clienteModificado.setEmailContacto(emailContacto);
             clienteModificado.setDireccionFacturacion(direccionFacturacion);
             clienteModificado.setTelfContacto(telfContacto);
+
+            for (int i = 0; i < clientesPendientes.longitud() ; i++) {
+                if (clientesPendientes.devolverCliente(i) == clienteModificado ){
+                    clientesPendientes.eliminarCliente(i);
+                    clientesPendientes.registarCliente(clienteModificado);
+                }
+            }
+
+            for (int i = 0; i < clientesRecibidos.longitud(); i++) {
+                if (clientesRecibidos.devolverCliente(i) == clienteModificado){
+                    clientesRecibidos.eliminarCliente(i);
+                    clientesRecibidos.registarCliente(clienteModificado);
+                }
+            }
+
         } else {
             System.out.println("El cliente que quiere modificar no existe.");
         }

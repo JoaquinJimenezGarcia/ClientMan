@@ -36,6 +36,17 @@ public class ClientesRecibidos {
         }
     }
 
+    public Cliente devolverCliente(int indice){
+        Cliente cliente = clientesRecibidos.get(indice);
+
+        return cliente;
+    }
+
+    public void eliminarCliente(int indice){
+        clientesRecibidos.remove(indice);
+    }
+
+
     /**
      * Devuelve el tamaño de la lista
      * @return longitud de clientes

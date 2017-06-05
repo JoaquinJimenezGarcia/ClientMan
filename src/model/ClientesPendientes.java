@@ -30,6 +30,16 @@ public class ClientesPendientes {
         }
     }
 
+    public Cliente devolverCliente(int indice){
+        Cliente cliente = clientesPendientes.get(indice);
+
+        return cliente;
+    }
+
+    public void eliminarCliente(int indice){
+        clientesPendientes.remove(indice);
+    }
+
     /**
      * Primero comprueba si el cliente dado ya está en la lista, y en dicho caso, lo indica al usuario y devuelve
      * null, para que en el siguiente paso no lo vuelva a añadir.
